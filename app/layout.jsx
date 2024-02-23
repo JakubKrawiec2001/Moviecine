@@ -12,77 +12,10 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className="font-roboto text-white bg-mainBlack">
-				<div className="mx-12">
+				<div className="mx-4 md:mx-12">
 					<Nav></Nav>
 					<Menu></Menu>
-					<main className="mt-10 ml-[17em]">{children}</main>
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
+					<main className="mt-10 lg:ml-[17em]">{children}</main>
 					<br />
 					<br />
 					<br />
