@@ -1,16 +1,16 @@
-export default async function Home() {
-	return <div className="bg-mainLightBlack w-full p-5 rounded-[30px]"></div>;
-}
+import Hero from "@/components/Hero";
+import { getMovieDetails, getMovieImages } from "@/utils/requests";
 
-// {movies.results.map((movie) => {
-// 	return (
-// 		<>
-// 			<Image
-// 				src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-// 				width={500}
-// 				height={500}
-// 				alt="Movie poster"></Image>
-// 			<p key={movie.title}>{movie.title}</p>
-// 		</>
-// 	);
-// })}
+export default async function Home() {
+	const id = "438631";
+	const movieDetail = await getMovieDetails(id);
+	const movieImages = await getMovieImages(id);
+
+	return (
+		<div className="p-6">
+			<Hero
+				movieDetail={movieDetail}
+				movieImages={movieImages.backdrops}></Hero>
+		</div>
+	);
+}

@@ -11,9 +11,12 @@ module.exports = {
 				roboto: ["Montserrat", "sans-serif"],
 			},
 			colors: {
-				mainBlack: "#0B0A14",
-				mainLightBlack: "#171622",
-				mainOrange: "#FF5722",
+				mainBlack: "#171521",
+				mainLightBlack: "#1C1D21",
+				mainPink: "#F51E51",
+			},
+			screens: {
+				"2lg": "1100px",
 			},
 		},
 		container: {

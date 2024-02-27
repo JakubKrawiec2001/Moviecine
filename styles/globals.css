@@ -5,5 +5,9 @@
 @tailwind utilities;
 
 .active {
-	@apply text-mainOrange border-r-2 border-mainOrange;
+	@apply text-mainPink border-r-2 border-mainPink;
+}
+
+.mobile-active {
+	@apply text-white;
 }

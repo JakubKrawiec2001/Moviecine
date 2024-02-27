@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import Menu from "@/components/Menu";
 import Nav from "@/components/Nav";
 import "@/styles/globals.css";
@@ -10,46 +9,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en">
-			<body className="font-roboto text-white bg-mainBlack">
-				<div className="mx-4 md:mx-12">
-					<Nav></Nav>
+		<html lang="en" suppressHydrationWarning={true}>
+			<body
+				className="font-roboto min-h-screen text-white bg-mainBlack"
+				suppressHydrationWarning={true}>
+				<div className="flex">
 					<Menu></Menu>
-					<main className="mt-10 lg:ml-[17em]">{children}</main>
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					{/* <Footer></Footer> */}
+					<main className="w-full">
+						<Nav></Nav>
+						{children}
+					</main>
 				</div>
 			</body>
 		</html>
