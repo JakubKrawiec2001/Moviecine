@@ -7,7 +7,7 @@ export default async function Home() {
 	const movieImages = await getMovieImages(id);
 
 	return (
-		<div className="p-6">
+		<div className="p-4 md:p-6">
 			<Hero
 				movieDetail={movieDetail}
 				movieImages={movieImages.backdrops}></Hero>

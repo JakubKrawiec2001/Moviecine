@@ -13,6 +13,7 @@ export const getAllMovies = async () => {
 	);
 	return res.json();
 };
+
 export const getTrendingTvShows = async () => {
 	const res = await fetch(
 		"https://api.themoviedb.org/3/trending/tv/week?language=en-US",
@@ -20,6 +21,7 @@ export const getTrendingTvShows = async () => {
 	);
 	return res.json();
 };
+
 export const getMovieDetails = async (id) => {
 	const res = await fetch(
 		`https://api.themoviedb.org/3/movie/${id}?language=en-US`,
@@ -27,9 +29,18 @@ export const getMovieDetails = async (id) => {
 	);
 	return res.json();
 };
+
 export const getMovieImages = async (id) => {
 	const res = await fetch(
 		`https://api.themoviedb.org/3/movie/${id}/images`,
+		options
+	);
+	return res.json();
+};
+
+export const getGenres = async () => {
+	const res = await fetch(
+		`https://api.themoviedb.org/3/genre/movie/list?language=en`,
 		options
 	);
 	return res.json();

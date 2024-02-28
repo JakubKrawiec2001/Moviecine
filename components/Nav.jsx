@@ -12,7 +12,7 @@ const Nav = () => {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<nav className="sticky top-0 flex items-center justify-between  w-full p-5  bg-mainLightBlack">
+		<nav className="sticky top-0 flex items-center justify-between  w-full p-5  bg-mainLightBlack z-50">
 			<Link href="/" className="flex items-center gap-2 2lg:hidden">
 				<FaFilm className="p-2 bg-mainPink text-4xl rounded-lg" />
 				<p className="text-xl font-medium">MovieCine</p>
@@ -78,7 +78,7 @@ const Nav = () => {
 				/>
 			</div>
 			<div
-				className={`fixed inset-0 w-full h-screen flex flex-col justify-center items-center gap-4 bg-black transition-all ${
+				className={`fixed inset-0 w-full h-screen flex flex-col justify-center items-center 2lg:hidden gap-4 bg-black transition-all ${
 					open ? "top-0 opacity-100" : "top-96 opacity-0"
 				}`}>
 				<IoIosCloseCircle

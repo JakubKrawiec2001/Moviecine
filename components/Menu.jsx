@@ -26,7 +26,7 @@ const Menu = () => {
 					<p className="text-md text-[#777] mb-6 mt-10">Menu</p>
 					<Link
 						href="/"
-						className={`flex items-center gap-2 hover:text-mainOrange hover:border-r-2 hover:border-mainOrange transition-colors mb-6 ${
+						className={`flex items-center gap-2 hover:text-mainPink  hover:border-r-2 hover:border-mainPink transition-colors mb-6 ${
 							pathname === "/" ? "active" : ""
 						}`}>
 						<GoHomeFill className="text-2xl" />
@@ -34,7 +34,7 @@ const Menu = () => {
 					</Link>
 					<Link
 						href="/"
-						className={`flex items-center gap-2 hover:text-mainOrange hover:border-r-2 hover:border-mainOrange transition-colors mb-6 ${
+						className={`flex items-center gap-2 hover:text-mainPink  hover:border-r-2 hover:border-mainPink  transition-colors mb-6 ${
 							pathname === "/discover" ? "active" : ""
 						}`}>
 						<SlCompass className="text-2xl" />
@@ -43,7 +43,7 @@ const Menu = () => {
 					<p className="text-md text-[#777] mb-6 mt-10">Library</p>
 					<Link
 						href="/"
-						className={`flex items-center gap-2 hover:text-mainOrange hover:border-r-2 hover:border-mainOrange transition-colors mb-6 ${
+						className={`flex items-center gap-2 hover:text-mainPink  hover:border-r-2 hover:border-mainPink  transition-colors mb-6 ${
 							pathname === "/coming-soon" ? "active" : ""
 						}`}>
 						<GoClock className="text-2xl" />
@@ -51,7 +51,7 @@ const Menu = () => {
 					</Link>
 					<Link
 						href="/"
-						className={`flex items-center gap-2 hover:text-mainOrange hover:border-r-2 hover:border-mainOrange transition-colors mb-6 ${
+						className={`flex items-center gap-2 hover:text-mainPink  hover:border-r-2 hover:border-mainPink  transition-colors mb-6 ${
 							pathname === "/top-rated" ? "active" : ""
 						}`}>
 						<IoIosStarOutline className="text-2xl" />
@@ -59,7 +59,7 @@ const Menu = () => {
 					</Link>
 					<Link
 						href="/"
-						className={`flex items-center gap-2 hover:text-mainOrange hover:border-r-2 hover:border-mainOrange transition-colors mb-6 ${
+						className={`flex items-center gap-2 hover:text-mainPink  hover:border-r-2 hover:border-mainPink  transition-colors mb-6 ${
 							pathname === "/liked" ? "active" : ""
 						}`}>
 						<CiHeart className="text-2xl" />
@@ -67,7 +67,7 @@ const Menu = () => {
 					</Link>
 					<Link
 						href="/"
-						className={`flex items-center gap-2 hover:text-mainOrange hover:border-r-2 hover:border-mainOrange transition-colors mb-6 ${
+						className={`flex items-center gap-2 hover:text-mainPink  hover:border-r-2 hover:border-mainPink  transition-colors mb-6 ${
 							pathname === "/popular" ? "active" : ""
 						}`}>
 						<IoEyeOutline className="text-2xl" />
@@ -77,7 +77,7 @@ const Menu = () => {
 					<p className="text-md text-[#777] mb-6 mt-10">General</p>
 					<Link
 						href="/"
-						className={`flex items-center gap-2 hover:text-mainOrange hover:border-r-2 hover:border-mainOrange transition-colors mb-6 ${
+						className={`flex items-center gap-2 hover:text-mainPink  hover:border-r-2 hover:border-mainPink  transition-colors mb-6 ${
 							pathname === "/settings" ? "active" : ""
 						}`}>
 						<CiSettings className="text-2xl" />
@@ -85,7 +85,7 @@ const Menu = () => {
 					</Link>
 					<Link
 						href="/"
-						className={`flex items-center gap-2 hover:text-mainOrange hover:border-r-2 hover:border-mainOrange transition-colors mb-6 ${
+						className={`flex items-center gap-2 hover:text-mainPink  hover:border-r-2 hover:border-mainPink  transition-colors mb-6 ${
 							pathname === "/help" ? "active" : ""
 						}`}>
 						<IoHelpCircleOutline className="text-2xl" />
@@ -93,7 +93,7 @@ const Menu = () => {
 					</Link>
 				</div>
 
-				<p className="flex items-center gap-2 text-lg font-light">
+				<p className="flex items-center gap-2 text-lg font-light hover:text-mainPink cursor-pointer">
 					<CiLogin className="text-2xl" />
 					Log Out
 				</p>
