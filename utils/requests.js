@@ -6,7 +6,7 @@ const options = {
 	},
 };
 
-export const getAllMovies = async () => {
+export const getPopularMovies = async () => {
 	const res = await fetch(
 		"https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
 		options

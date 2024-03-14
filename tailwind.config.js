@@ -14,8 +14,12 @@ module.exports = {
 				mainBlack: "#171521",
 				mainLightBlack: "#1C1D21",
 				mainPink: "#F51E51",
+				hoverPink: "#a41234",
 			},
 			screens: {
+				smMobile: "320px",
+				mdMobile: "375px",
+				lgMobile: "414px",
 				"2lg": "1100px",
 				"3xl": "1600px",
 			},
