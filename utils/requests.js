@@ -13,10 +13,16 @@ export const getPopularMovies = async () => {
 	);
 	return res.json();
 };
-
-export const getTrendingTvShows = async () => {
+export const getNowPlayingMovies = async () => {
 	const res = await fetch(
-		"https://api.themoviedb.org/3/trending/tv/week?language=en-US",
+		"https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+		options
+	);
+	return res.json();
+};
+export const getTopRatedMovies = async () => {
+	const res = await fetch(
+		"https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
 		options
 	);
 	return res.json();

@@ -4,7 +4,41 @@
 @tailwind components;
 @tailwind utilities;
 
+.slider-container .slick-next {
+	right: 0;
+}
 
+.slider-container .slick-prev {
+	left: 0;
+}
+.slider-container .slick-prev,
+.slider-container .slick-next {
+	top: 50%;
+	transform: translateY(-50%);
+	width: 5%;
+	height: 100%;
+	z-index: 100;
+	opacity: 0;
+	transition: all 0.3s ease;
+}
+
+.slider-container .slick-prev:before,
+.slider-container .slick-next:before {
+	color: #f51e51;
+	font-size: 2.4rem;
+	z-index: 1000;
+}
+.slider-container:hover .slick-prev,
+.slider-container:hover .slick-next {
+	background-color: rgba(0, 0, 0, 0.7);
+	opacity: 0.7;
+}
+
+.slider-container .slick-prev:hover,
+.slider-container .slick-next:hover {
+	background-color: rgba(0, 0, 0, 0.7);
+	opacity: 1;
+}
 
 .active {
 	@apply text-mainPink border-r-2 border-mainPink;
