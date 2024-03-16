@@ -40,6 +40,13 @@
 	opacity: 1;
 }
 
+@media screen and (max-width: 1100px) {
+	.slider-container .slick-prev:before,
+	.slider-container .slick-next:before {
+		display: none;
+	}
+}
+
 .active {
 	@apply text-mainPink border-r-2 border-mainPink;
 }

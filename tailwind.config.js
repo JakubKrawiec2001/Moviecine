@@ -22,6 +22,7 @@ module.exports = {
 				lgMobile: "414px",
 				"2lg": "1100px",
 				"3xl": "1600px",
+				"4xl": "1900px",
 			},
 		},
 		container: {

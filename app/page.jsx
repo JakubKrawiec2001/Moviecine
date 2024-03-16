@@ -5,20 +5,34 @@ import MovieCard from "@/components/MovieCard";
 import SectionHeading from "@/components/SectionHeading";
 import {
 	getGenres,
+	getMovieByGenres,
 	getMovieDetails,
 	getMovieImages,
 	getNowPlayingMovies,
 	getPopularMovies,
 	getTopRatedMovies,
+	getUpcomingMovies,
 } from "@/utils/requests";
 
 export default async function Home() {
 	const id = "438631";
+	const comedy = "35";
+	const drama = "18";
+	const action = "28";
+	const upcomingMoviesPage = "1";
+	const newMoviesPage = "2";
 	const movieDetail = await getMovieDetails(id);
 	const movieImages = await getMovieImages(id);
-	const popularMovies = await getPopularMovies();
+	const popularMovies = await getPopularMovies("1");
+	const criticallyAcclaimedMovies = await getPopularMovies("2");
+	const recommendedMovies = await getPopularMovies("3");
 	const nowPlayingMovies = await getNowPlayingMovies();
 	const topRatedMovies = await getTopRatedMovies();
+	const comedyMovies = await getMovieByGenres(comedy);
+	const dramaMovies = await getMovieByGenres(drama);
+	const actionMovies = await getMovieByGenres(action);
+	const upcomingMovies = await getUpcomingMovies(upcomingMoviesPage);
+	const newMovies = await getUpcomingMovies(newMoviesPage);
 	const genres = await getGenres();
 
 	return (
@@ -35,19 +49,19 @@ export default async function Home() {
 				<SectionHeading>{"Top rated"}</SectionHeading>
 				<Carousel data={topRatedMovies.results}></Carousel>
 				<SectionHeading>{"Popular comedy movies"}</SectionHeading>
-				<Carousel data={popularMovies.results}></Carousel>
+				<Carousel data={comedyMovies.results}></Carousel>
 				<SectionHeading>{"Upcoming"}</SectionHeading>
-				<Carousel data={popularMovies.results}></Carousel>
+				<Carousel data={upcomingMovies.results}></Carousel>
 				<SectionHeading>{"New movies"}</SectionHeading>
-				<Carousel data={popularMovies.results}></Carousel>
+				<Carousel data={newMovies.results}></Carousel>
 				<SectionHeading>{"Popular drama movies"}</SectionHeading>
-				<Carousel data={popularMovies.results}></Carousel>
+				<Carousel data={dramaMovies.results}></Carousel>
 				<SectionHeading>{"Critically acclaimed"}</SectionHeading>
-				<Carousel data={popularMovies.results}></Carousel>
+				<Carousel data={criticallyAcclaimedMovies.results}></Carousel>
 				<SectionHeading>{"Recommended for you"}</SectionHeading>
-				<Carousel data={popularMovies.results}></Carousel>
+				<Carousel data={recommendedMovies.results}></Carousel>
 				<SectionHeading>{"Popular action movies"}</SectionHeading>
-				<Carousel data={popularMovies.results}></Carousel>
+				<Carousel data={actionMovies.results}></Carousel>
 			</main>
 		</div>
 	);

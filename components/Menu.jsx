@@ -98,7 +98,7 @@ const Menu = () => {
 					Log Out
 				</p>
 			</div>
-			<div className="fixed bottom-0 left-0 px-3 py-5 flex items-center justify-between md:justify-center md:gap-20 bg-mainLightBlack w-full 2lg:hidden">
+			<div className="fixed bottom-0 left-0 px-3 py-5 flex items-center justify-between md:justify-center md:gap-20 bg-mainLightBlack w-full 2lg:hidden z-50">
 				<Link
 					href="/"
 					className={`flex flex-col items-center gap-1 text-gray-400  ${

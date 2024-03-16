@@ -12,37 +12,57 @@ const Carousel = ({ data }) => {
 		speed: 500,
 		slidesToShow: 8,
 		slidesToScroll: 4,
-		initialSlide: 0,
 		responsive: [
 			{
-				breakpoint: 1024,
+				breakpoint: 1900,
 				settings: {
-					slidesToShow: 8,
-					slidesToScroll: 3,
-					infinite: true,
+					slidesToShow: 6,
+					slidesToScroll: 6,
 				},
 			},
 			{
-				breakpoint: 600,
+				breakpoint: 1500,
 				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 2,
-					initialSlide: 2,
+					slidesToShow: 5,
+					slidesToScroll: 5,
+				},
+			},
+			{
+				breakpoint: 1300,
+				settings: {
+					slidesToShow: 4,
+					slidesToScroll: 4,
+				},
+			},
+			{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 5,
+					slidesToScroll: 5,
+				},
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 5,
+					slidesToScroll: 5,
 				},
 			},
 			{
 				breakpoint: 480,
 				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
+					slidesToShow: 3,
+					slidesToScroll: 3,
 				},
 			},
 		],
 	};
 	return (
 		<div>
-			<div className="mt-4 mb-10">
-				<Slider {...settings} className="slider-container w-[86vw]">
+			<div className="mt-2 mb-8 lg:mb-10">
+				<Slider
+					{...settings}
+					className="slider-container 2lg:w-[75vw] xl:w-[79vw] 2xl:w-[82vw] 4xl:w-[85vw]">
 					{data.map((item) => {
 						return <MovieCard key={item.id} item={item} />;
 					})}
