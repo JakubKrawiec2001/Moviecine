@@ -7,9 +7,11 @@ import { CiHeart } from "react-icons/ci";
 import { IoIosMenu } from "react-icons/io";
 import { useState } from "react";
 import { IoIosCloseCircle, IoIosArrowDown } from "react-icons/io";
+import { usePathname } from "next/navigation";
 
-const Nav = () => {
+const Nav = ({ params }) => {
 	const [open, setOpen] = useState(false);
+	const pathname = usePathname();
 
 	return (
 		<nav className="sticky top-0 flex items-center justify-between  w-full p-5  bg-mainLightBlack z-50">
@@ -19,19 +21,18 @@ const Nav = () => {
 			</Link>
 			<div className="hidden 2lg:flex gap-10 ml-10 font-light">
 				<Link
-					href="/movies"
-					className="text-lg hover:text-mainPink transition-colors">
+					href="/all/movies"
+					className={`text-lg hover:text-mainPink transition-colors ${
+						pathname.slice(5) === "movies" ? "text-mainPink" : ""
+					}`}>
 					Movies
 				</Link>
 				<Link
-					href="/series"
-					className="text-lg hover:text-mainPink transition-colors">
+					href="/all/series"
+					className={`text-lg hover:text-mainPink transition-colors ${
+						pathname.slice(5) === "series" ? "text-mainPink" : ""
+					}`}>
 					Series
-				</Link>
-				<Link
-					href="/tv-shows"
-					className="text-lg hover:text-mainPink transition-colors">
-					TV Shows
 				</Link>
 				<Link
 					href="/"

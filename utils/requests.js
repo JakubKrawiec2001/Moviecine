@@ -1,3 +1,5 @@
+"use server";
+
 const options = {
 	method: "GET",
 	headers: {
@@ -30,6 +32,13 @@ export const getTopRatedMovies = async () => {
 export const getMovieByGenres = async (id) => {
 	const res = await fetch(
 		`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc&with_genres=${id}`,
+		options
+	);
+	return res.json();
+};
+export const getAllData = async (type, page) => {
+	const res = await fetch(
+		`https://api.themoviedb.org/3/discover/${type}?language=en-US&page=${page}`,
 		options
 	);
 	return res.json();
