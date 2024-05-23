@@ -36,7 +36,9 @@ const CustomFormField = ({
 						<Input
 							placeholder={placeholder}
 							type={
-								name === "password" || "confirmedPassword" ? "password" : "text"
+								name === "password" || name === "confirmedPassword"
+									? "password"
+									: "text"
 							}
 							{...field}
 						/>

@@ -5,46 +5,61 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { useState } from "react";
 import CustomFormField from "./CustomFormField";
 import { formSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { signIn, signUp } from "@/lib/actions/user.actions";
+import { useRouter } from "next/navigation";
+import { toast, useToast } from "@/components/ui/use-toast";
 
 const AuthForm = ({ type }: { type: string }) => {
-	const [user, setUser] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
-	const router = useRouter();
-
 	const authSchema = formSchema(type);
+	const [user, setUser] = useState(null);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const router = useRouter();
+	const { toast } = useToast();
 
 	const form = useForm<z.infer<typeof authSchema>>({
 		resolver: zodResolver(authSchema),
 		defaultValues: {
-			username: "",
 			email: "",
 			password: "",
-			confirmedPassword: "",
 		},
 	});
 
 	const onSubmit = async (data: z.infer<typeof authSchema>) => {
 		setIsLoading(true);
+
 		try {
 			if (type === "sign-up") {
 				const newUser = await signUp(data);
 				setUser(newUser);
+				if (newUser.ok) router.push("/");
+				if (newUser.code === 409) {
+					toast({
+						variant: "destructive",
+						title: "User exists",
+						description: "A user with the same email already exists.",
+					});
+				}
 			}
 			if (type === "sign-in") {
-				const userData = await signIn({
+				const response = await signIn({
 					email: data.email,
 					password: data.password,
 				});
-				if (response) {
-					router.push("/");
+
+				if (response.ok) router.push("/");
+
+				if (response.status === 401) {
+					toast({
+						variant: "destructive",
+						title: "Login error",
+						description: response.data.message,
+					});
 				}
 			}
 		} catch (error) {
@@ -53,6 +68,7 @@ const AuthForm = ({ type }: { type: string }) => {
 			setIsLoading(false);
 		}
 	};
+
 	return (
 		<div className="p-6 md:p-12">
 			<h1 className="flex items-center justify-center gap-2 text-lg md:text-3xl font-bold">
@@ -133,7 +149,7 @@ const AuthForm = ({ type }: { type: string }) => {
 								: "Already have an account?"}
 						</p>
 						<Link
-							href={type === "sign-in" ? "/sign-up" : "sign-in"}
+							href={type === "sign-in" ? "/sign-up" : "/sign-in"}
 							className="text-mainPink-1 md:text-lg hover:text-mainPink-2 transition-colors font-bold">
 							{type === "sign-in" ? "Sing Up" : "Sign In"}
 						</Link>
