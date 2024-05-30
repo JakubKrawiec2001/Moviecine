@@ -29,17 +29,17 @@ const MobileMenu = ({ user }: { user: User }) => {
 					<IoMenu className="text-white text-4xl xs:text-[2.8rem]" />
 				</SheetTrigger>
 				<SheetContent className="bg-mainBlack-2 text-white flex flex-col justify-between">
-					<div className="flex items-center gap-2">
+					<div className="flex items-center gap-2 xs:gap-3">
 						<div className="flex items-center justify-center size-12 rounded-full bg-mainPink-2">
 							<p className="text-2xl font-bold">{name.slice(0, 1)}</p>
 						</div>
 						<div className="flex flex-col">
-							<p className="text-white font-semibold">{name}</p>
-							<p className="text-slate-300 text-sm">{email}</p>
+							<p className="text-white font-semibold xs:text-lg">{name}</p>
+							<p className="text-slate-300 text-sm xs:text-base">{email}</p>
 						</div>
 					</div>
 					<SheetClose asChild>
-						<div className="flex flex-col gap-8">
+						<div className="flex flex-col gap-12">
 							{mobileLinks.map((item) => {
 								return (
 									<Link
@@ -51,6 +51,7 @@ const MobileMenu = ({ user }: { user: User }) => {
 											width={30}
 											height={30}
 											alt={item.label}
+											className="xs:size-8"
 										/>
 										{item.label}
 									</Link>
@@ -60,9 +61,9 @@ const MobileMenu = ({ user }: { user: User }) => {
 					</SheetClose>
 					<SheetClose
 						asChild
-						className="text-white flex items-center gap-6 border-t-[1px] border-slate-500 pt-6">
-						<p className="text-lg" onClick={handleLogOut}>
-							<CiLogout className="text-2xl" /> Log out
+						className="text-white flex items-center gap-6 border-t-[1px] border-slate-500 pt-6 xs:pt-8">
+						<p className="text-lg xs:text-xl" onClick={handleLogOut}>
+							<CiLogout className="text-2xl xs:text-3xl" /> Log out
 						</p>
 					</SheetClose>
 				</SheetContent>

@@ -22,7 +22,7 @@ const Navbar = ({ user }: { user: User }) => {
 	};
 
 	return (
-		<div className="wrapper flex justify-between items-center py-3 xs:py-4 md:py-6">
+		<div className="wrapper fixed top-0 w-full flex justify-between items-center py-3 xs:py-4 md:py-6 z-50">
 			<div className="flex items-center gap-1 md:gap-2">
 				<Image
 					src={logo}
@@ -69,14 +69,14 @@ const Navbar = ({ user }: { user: User }) => {
 				<div className="flex items-center justify-center size-12 rounded-full bg-mainPink-2">
 					<p className="text-2xl font-bold">{name.slice(0, 1)}</p>
 				</div>
-				<MobileMenu user={user}/>
+				<MobileMenu user={user} />
 			</div>
 			<div className="flex lg:hidden items-center gap-4">
 				<FaSearch
 					className="2lg:hidden text-2xl xs:text-[1.6rem]"
 					onClick={handleOpenSearchInput}
 				/>
-				<MobileMenu user={user}/>
+				<MobileMenu user={user} />
 			</div>
 		</div>
 	);

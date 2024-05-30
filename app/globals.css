@@ -29,9 +29,12 @@
 
 @layer utilities {
 	.main_btn {
-		@apply bg-gradient-to-b from-mainPink-1 to-mainPink-2 rounded-lg hover:bg-gradient-to-b hover:from-mainBlack-1 hover:to-mainBlack-2 transition-colors;
+		@apply bg-gradient-to-b from-mainPink-1 to-mainPink-2 rounded-xl hover:bg-gradient-to-b hover:from-mainBlack-1 hover:to-mainBlack-2 transition-colors;
 	}
 	.wrapper {
 		@apply px-2 xs:px-4 lg:px-8 2xl:px-16;
+	}
+	.hero_gradient {
+		@apply absolute w-full h-full bg-gradient-to-b from-[#141414] via-[#1c1d215c] to-[#141414] z-10;
 	}
 }
