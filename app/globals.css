@@ -21,9 +21,17 @@
 	backdrop-filter: blur(4px);
 	-webkit-backdrop-filter: blur(4px);
 }
+.glassmorphism_gray {
+	background: rgba(54, 54, 54, 0.6);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+}
 
 @layer utilities {
 	.main_btn {
 		@apply bg-gradient-to-b from-mainPink-1 to-mainPink-2 rounded-lg hover:bg-gradient-to-b hover:from-mainBlack-1 hover:to-mainBlack-2 transition-colors;
+	}
+	.wrapper {
+		@apply px-2 xs:px-4 lg:px-8 2xl:px-16;
 	}
 }

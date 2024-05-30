@@ -82,6 +82,7 @@ const config = {
 			},
 			screens: {
 				xs: "400px",
+				"2lg": "1100px",
 			},
 		},
 	},
