@@ -34,6 +34,7 @@ export interface SearchResultsInterface {
 	results: MovieInterface[];
 	total_pages: number;
 	total_results: number;
+	genres: GenreInterface[];
 }
 
 export interface GenreInterface {

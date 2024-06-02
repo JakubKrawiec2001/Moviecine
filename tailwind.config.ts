@@ -18,6 +18,9 @@ const config = {
 			},
 		},
 		extend: {
+			flex: {
+				full: "0 0 100%",
+			},
 			colors: {
 				mainPink: {
 					1: "#F51E51",

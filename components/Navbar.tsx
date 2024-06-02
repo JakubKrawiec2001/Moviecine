@@ -6,12 +6,12 @@ import { navLinks } from "@/constansts/index";
 import Link from "next/link";
 import { User } from "@/types";
 import SearchInput from "./SearchInput";
-import { IoIosArrowDown } from "react-icons/io";
 import MobileMenu from "./MobileMenu";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { cn } from "@/lib/utils";
+import GenresDropdownMenu from "./GenresDropdownMenu";
 
 const Navbar = ({ user }: { user: User }) => {
 	const { name } = user;
@@ -64,7 +64,7 @@ const Navbar = ({ user }: { user: User }) => {
 			<div className="hidden lg:flex items-center gap-8">
 				<SearchInput />
 				<p className="flex items-center gap-1">
-					Genres <IoIosArrowDown />
+					<GenresDropdownMenu />
 				</p>
 				<div className="flex items-center justify-center size-12 rounded-full bg-mainPink-2">
 					<p className="text-2xl font-bold">{name.slice(0, 1)}</p>

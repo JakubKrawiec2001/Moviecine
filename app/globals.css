@@ -21,10 +21,29 @@
 	backdrop-filter: blur(4px);
 	-webkit-backdrop-filter: blur(4px);
 }
+.glassmorphism_white {
+	background: rgba(144, 144, 144, 0.4);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+}
 .glassmorphism_gray {
 	background: rgba(54, 54, 54, 0.6);
 	backdrop-filter: blur(4px);
 	-webkit-backdrop-filter: blur(4px);
+}
+.hero_gradient {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgb(20, 20, 20);
+	background: linear-gradient(
+		180deg,
+		rgba(20, 20, 20, 1) 4%,
+		rgba(20, 20, 20, 0.7903536414565826) 18%,
+		rgba(20, 20, 20, 0.48783263305322133) 50%,
+		rgba(20, 20, 20, 0.5858718487394958) 65%,
+		rgba(20, 20, 20, 1) 100%
+	);
 }
 
 @layer utilities {
@@ -34,7 +53,7 @@
 	.wrapper {
 		@apply px-2 xs:px-4 lg:px-8 2xl:px-16;
 	}
-	.hero_gradient {
-		@apply absolute w-full h-full bg-gradient-to-b from-[#141414] via-[#1c1d215c] to-[#141414] z-10;
-	}
+	/* .hero_gradient {
+		@apply absolute w-full h-full bg-gradient-to-b from-[#141414] via-[#1c1d2171] to-[#141414] z-10;
+	} */
 }

@@ -1,17 +1,15 @@
 import Hero from "@/components/Hero";
-import {
-	getMovieById,
-	getNowPlayingMovies,
-	getPopularMovies,
-} from "@/lib/tmdb";
+import { getGenres, getNowPlayingMovies } from "@/lib/tmdb";
 
 export default async function Home() {
-	const popularMovies = await getPopularMovies();
+	// const popularMovies = await getPopularMovies();
 	const nowPlayingMovies = await getNowPlayingMovies();
+	const genres = await getGenres();
 
 	return (
 		<>
-			<Hero movies={nowPlayingMovies} />
+			<Hero movies={nowPlayingMovies} genres={genres} />
+			<p className="text-4xl">HELLO</p>
 		</>
 	);
 }

@@ -1,4 +1,4 @@
-import { SearchResultsInterface } from "@/types";
+import { GenreInterface, SearchResultsInterface } from "@/types";
 
 async function fetchDataFromTMDB(url: string, cacheTime?: number) {
 	const options = {
@@ -14,6 +14,7 @@ async function fetchDataFromTMDB(url: string, cacheTime?: number) {
 
 	const response = await fetch(url, options);
 	const data = (await response.json()) as SearchResultsInterface;
+
 	return data;
 }
 
@@ -32,4 +33,10 @@ export const getNowPlayingMovies = async () => {
 	const url = "https://api.themoviedb.org/3/movie/now_playing?page=1";
 	const data = await fetchDataFromTMDB(url);
 	return data.results;
+};
+
+export const getGenres = async () => {
+	const url = "https://api.themoviedb.org/3/genre/movie/list";
+	const data = await fetchDataFromTMDB(url);
+	return data.genres;
 };
