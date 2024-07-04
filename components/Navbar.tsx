@@ -1,28 +1,44 @@
 "use client";
-
 import logo from "@/public/icons/logo.svg";
 import Image from "next/image";
 import { navLinks } from "@/constansts/index";
 import Link from "next/link";
-import { User } from "@/types";
+import { GenreInterface, User } from "@/types";
 import SearchInput from "./SearchInput";
 import MobileMenu from "./MobileMenu";
 import { FaSearch } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { cn } from "@/lib/utils";
 import GenresDropdownMenu from "./GenresDropdownMenu";
+import { usePathname } from "next/navigation";
 
-const Navbar = ({ user }: { user: User }) => {
+const Navbar = ({ user, genres }: { user: User; genres: GenreInterface[] }) => {
 	const { name } = user;
 	const [open, setOpen] = useState(false);
+	const [scroll, setScroll] = useState(false);
+	const pathname = usePathname();
 
 	const handleOpenSearchInput = () => {
 		setOpen((prev) => !prev);
 	};
+	useEffect(() => {
+		const handleScroll = () => {
+			setScroll(window.scrollY > 10);
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
 	return (
-		<div className="wrapper fixed top-0 w-full flex justify-between items-center py-3 xs:py-4 md:py-6 z-50">
+		<div
+			className={`wrapper fixed top-0 w-full flex justify-between items-center py-3 xs:py-4 md:py-6 z-50 ${
+				scroll ? "bg-mainBlack-2" : ""
+			}`}>
 			<div className="flex items-center gap-1 md:gap-2">
 				<Image
 					src={logo}
@@ -38,8 +54,15 @@ const Navbar = ({ user }: { user: User }) => {
 			<div className="hidden xl:flex gap-12 text-white text-lg">
 				{navLinks.map((item, i) => {
 					const { path, label } = item;
+					const isActive =
+						pathname === item.path || pathname.startsWith(`${item.path}/`);
 					return (
-						<Link href={path} key={i}>
+						<Link
+							href={path}
+							key={i}
+							className={cn("text-slate-300 text-lg", {
+								"text-white": isActive,
+							})}>
 							{label}
 						</Link>
 					);
@@ -63,9 +86,7 @@ const Navbar = ({ user }: { user: User }) => {
 
 			<div className="hidden lg:flex items-center gap-8">
 				<SearchInput />
-				<p className="flex items-center gap-1">
-					<GenresDropdownMenu />
-				</p>
+				<GenresDropdownMenu genres={genres} />
 				<div className="flex items-center justify-center size-12 rounded-full bg-mainPink-2">
 					<p className="text-2xl font-bold">{name.slice(0, 1)}</p>
 				</div>

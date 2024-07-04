@@ -24,8 +24,8 @@ export const getMovieById = async (id: string) => {
 	return data;
 };
 
-export const getPopularMovies = async () => {
-	const url = "https://api.themoviedb.org/3/movie/popular?page=1";
+export const getPopularMovies = async (type: string) => {
+	const url = `https://api.themoviedb.org/3/${type}/popular?page=1`;
 	const data = await fetchDataFromTMDB(url);
 	return data.results;
 };
@@ -34,9 +34,14 @@ export const getNowPlayingMovies = async () => {
 	const data = await fetchDataFromTMDB(url);
 	return data.results;
 };
+export const getAllTrending = async () => {
+	const url = "https://api.themoviedb.org/3/trending/all/day";
+	const data = await fetchDataFromTMDB(url);
+	return data.results;
+};
 
-export const getGenres = async () => {
-	const url = "https://api.themoviedb.org/3/genre/movie/list";
+export const getGenres = async (type: string) => {
+	const url = `https://api.themoviedb.org/3/genre/${type}/list`;
 	const data = await fetchDataFromTMDB(url);
 	return data.genres;
 };

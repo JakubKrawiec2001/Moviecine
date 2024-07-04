@@ -45,15 +45,37 @@
 		rgba(20, 20, 20, 1) 100%
 	);
 }
+.read_more {
+	position: relative;
+}
+
+.read_more::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 0;
+	height: 1px;
+	width: 100%;
+	background-color: white;
+	transition: all 0.3s ease;
+}
+
+.read_more:hover::before {
+	background-color: #a41234;
+}
 
 @layer utilities {
 	.main_btn {
 		@apply bg-gradient-to-b from-mainPink-1 to-mainPink-2 rounded-xl hover:bg-gradient-to-b hover:from-mainBlack-1 hover:to-mainBlack-2 transition-colors;
 	}
 	.wrapper {
-		@apply px-2 xs:px-4 lg:px-8 2xl:px-16;
+		@apply px-4 md:px-6 lg:px-8 2xl:px-16;
 	}
-	/* .hero_gradient {
-		@apply absolute w-full h-full bg-gradient-to-b from-[#141414] via-[#1c1d2171] to-[#141414] z-10;
-	} */
+	.carousel_shadow_right {
+		@apply h-full w-[5%] bg-gradient-to-r from-[#14141444] to-mainBlack-1 hover:from-[#141414cf] hover:to-mainBlack-1 transition-all;
+	}
+	.carousel_shadow_left {
+		@apply h-full w-[5%] bg-gradient-to-l from-[#14141444] to-mainBlack-1 hover:from-[#141414cf] hover:to-mainBlack-1 transition-all;
+	}
 }
