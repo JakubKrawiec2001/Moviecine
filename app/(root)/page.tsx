@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import MovieCarousel from "@/components/MovieCarousel";
+import Top10Carousel from "@/components/Top10Carousel";
 import {
 	getAllTrending,
 	getGenres,
@@ -18,7 +19,7 @@ export default async function Home() {
 	return (
 		<>
 			<Hero movies={nowPlayingMovies} genres={getMovieGenres} />
-			<div className="flex flex-col gap-6 md:gap-10 wrapper  md:mt-12 ">
+			<div className="flex flex-col gap-6 md:gap-14 wrapper  md:mt-12 select-none">
 				<MovieCarousel
 					type="trending"
 					label="Daily Trending"
@@ -38,6 +39,7 @@ export default async function Home() {
 					data={popularSeries}
 					genres={getSeriesGenres}
 				/>
+				<Top10Carousel data={nowPlayingMovies} />
 			</div>
 		</>
 	);

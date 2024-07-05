@@ -65,6 +65,7 @@
 	background-color: #a41234;
 }
 
+
 @layer utilities {
 	.main_btn {
 		@apply bg-gradient-to-b from-mainPink-1 to-mainPink-2 rounded-xl hover:bg-gradient-to-b hover:from-mainBlack-1 hover:to-mainBlack-2 transition-colors;

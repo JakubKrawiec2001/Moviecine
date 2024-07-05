@@ -48,8 +48,8 @@ const MovieCarousel = ({ data, type, label, genres }: Props) => {
 							<CarouselItem
 								className={`group flex flex-col gap-2 md:gap-4 ${
 									type === "all"
-										? "basis-[40%] lg:basis-[12%]"
-										: "basis-[50%] md:basis-1/2 lg:basis-[18%]"
+										? "basis-[40%] lg:basis-[20%] xl:basis-[16%]  2xl:basis-[13%]"
+										: "basis-[50%] md:basis-1/2 lg:basis-[26%] xl:basis-[22%] 2xl:basis-[18%]"
 								}  cursor-pointer`}
 								key={item.id}>
 								<Image

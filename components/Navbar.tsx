@@ -37,7 +37,7 @@ const Navbar = ({ user, genres }: { user: User; genres: GenreInterface[] }) => {
 	return (
 		<div
 			className={`wrapper fixed top-0 w-full flex justify-between items-center py-3 xs:py-4 md:py-6 z-50 ${
-				scroll ? "bg-mainBlack-2" : ""
+				scroll ? "bg-[#1c1d21f3]" : ""
 			}`}>
 			<div className="flex items-center gap-1 md:gap-2">
 				<Image
