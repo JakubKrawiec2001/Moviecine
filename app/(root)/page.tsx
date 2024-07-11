@@ -1,8 +1,10 @@
+import FeaturedCarousel from "@/components/FeaturedCarousel";
 import Hero from "@/components/Hero";
 import MovieCarousel from "@/components/MovieCarousel";
 import Top10Carousel from "@/components/Top10Carousel";
 import {
 	getAllTrending,
+	getDiscoveredMovies,
 	getGenres,
 	getNowPlayingMovies,
 	getPopularMovies,
@@ -15,11 +17,12 @@ export default async function Home() {
 	const nowTrendingAll = await getAllTrending();
 	const getMovieGenres = await getGenres("movie");
 	const getSeriesGenres = await getGenres("tv");
+	const featuredMovies = await getDiscoveredMovies(2, "movie");
 
 	return (
 		<>
 			<Hero movies={nowPlayingMovies} genres={getMovieGenres} />
-			<div className="flex flex-col gap-6 md:gap-14 wrapper  md:mt-12 select-none">
+			<div className="flex flex-col gap-10 md:gap-20 wrapper  md:mt-12 select-none">
 				<MovieCarousel
 					type="trending"
 					label="Daily Trending"
@@ -40,6 +43,7 @@ export default async function Home() {
 					genres={getSeriesGenres}
 				/>
 				<Top10Carousel data={nowPlayingMovies} />
+				<FeaturedCarousel data={featuredMovies} genres={getMovieGenres} />
 			</div>
 		</>
 	);

@@ -29,6 +29,7 @@ const config = {
 				mainBlack: {
 					1: "#141414",
 					2: "#1C1D21",
+					3: "#27272B",
 				},
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",

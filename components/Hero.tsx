@@ -11,6 +11,7 @@ import { FaCirclePlay } from "react-icons/fa6";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import imdbIcon from "@/public/icons/imdb.svg";
+import Link from "next/link";
 
 type Props = {
 	genres: GenreInterface[];
@@ -19,7 +20,7 @@ type Props = {
 
 const Hero = ({ movies, genres }: Props) => {
 	return (
-		<Carousel>
+		<Carousel opts={{ watchDrag: false }} className="select-none">
 			<CarouselContent className="h-screen">
 				{movies.slice(2, 7).map((movie) => {
 					return (
@@ -30,7 +31,7 @@ const Hero = ({ movies, genres }: Props) => {
 								width={1920}
 								height={1080}
 								alt={movie.title}
-								className="h-full object-cover"
+								className="h-full object-cover w-full"
 							/>
 							<div className="wrapper absolute bottom-[10%] 2lg:bottom-[20%] z-20">
 								<h1 className="text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-bold">
@@ -69,10 +70,12 @@ const Hero = ({ movies, genres }: Props) => {
 											</span>
 										</p>
 									</div>
-									<p className="flex items-center gap-2 text-base xs:text-lg hover:text-mainPink-2 transition-colors cursor-pointer">
+									<Link
+										href={`/details/${movie.id}?type=movie`}
+										className="flex items-center gap-2 text-base xs:text-lg hover:text-mainPink-2 transition-colors cursor-pointer">
 										<span className="read_more">Details</span>
 										<FaLongArrowAltRight />
-									</p>
+									</Link>
 								</div>
 								<div className="flex gap-3 xs:gap-4 md:gap-6 mt-6 xs:mt-10  md:mt-12">
 									<button className="main_btn flex items-center gap-2 md:gap-3 px-4 py-2 xs:px-5 md:px-6 md:py-4 text-base xs:text-lg md:text-xl font-semibold">

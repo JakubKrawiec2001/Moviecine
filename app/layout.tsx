@@ -21,7 +21,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.className} bg-mainBlack-1 scrollbar scrollbar-thumb-[#a41234]`}>
+				className={`${inter.className} bg-mainBlack-1 main_custom_scrollbar`}>
 				{children}
 				<Toaster />
 				<br />

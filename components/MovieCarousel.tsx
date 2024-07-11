@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { GenreInterface, MovieInterface } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
@@ -41,63 +42,73 @@ const MovieCarousel = ({ data, type, label, genres }: Props) => {
 	return (
 		<div>
 			<h2 className="text-xl xs:text-2xl md:text-3xl font-bold">{label}</h2>
-			<Carousel setApi={setApi} className="mt-3 md:mt-6">
+			<Carousel
+				setApi={setApi}
+				className="mt-3 md:mt-6"
+				opts={{ dragFree: true, slidesToScroll: "auto" }}>
 				<CarouselContent className="flex gap-2">
 					{data.map((item) => {
 						return (
 							<CarouselItem
-								className={`group flex flex-col gap-2 md:gap-4 ${
+								key={item.id}
+								className={`group ${
 									type === "all"
 										? "basis-[40%] lg:basis-[20%] xl:basis-[16%]  2xl:basis-[13%]"
 										: "basis-[50%] md:basis-1/2 lg:basis-[26%] xl:basis-[22%] 2xl:basis-[18%]"
-								}  cursor-pointer`}
-								key={item.id}>
-								<Image
-									src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-									width={300}
-									height={500}
-									alt={item.title}
-									className="rounded-xl group-hover:scale-[1.02] transition-transform"
-								/>
-								<div className="flex flex-col gap-1">
-									<div className="flex">
-										<p
-											className={`text-white font-semibold ${
+								}  cursor-pointer`}>
+								<Link
+									href={`/details/${item.id}?type=${
+										item.original_title ? "movie" : "tv"
+									}`}
+									className="flex flex-col gap-2 md:gap-4 h-full">
+									<Image
+										src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+										width={300}
+										height={500}
+										alt={item.title}
+										className="rounded-xl group-hover:scale-[1.02] transition-transform object-fill w-full h-full"
+									/>
+
+									<div className="flex flex-col gap-1">
+										<div className="flex">
+											<p
+												className={`text-white font-semibold ${
+													type === "all"
+														? "text-sm md:text-base"
+														: "text-base md:text-xl"
+												} line-clamp-1 group-hover:text-slate-300 transition-colors`}>
+												{item.media_type
+													? item.media_type === "movie"
+														? item.title
+														: item.name
+													: item.title || item.name}
+											</p>
+										</div>
+										<div
+											className={`flex gap-2 ${
 												type === "all"
 													? "text-sm md:text-base"
-													: "text-base md:text-xl"
-											} line-clamp-1 group-hover:text-slate-300 transition-colors`}>
-											{item.media_type
-												? item.media_type === "movie"
-													? item.title
-													: item.name
-												: item.title || item.name}
-										</p>
-									</div>
-									<div
-										className={`flex gap-2 ${
-											type === "all"
-												? "text-sm md:text-base"
-												: "text-base md:text-lg"
-										}`}>
-										<p className="flex items-center gap-1">
-											<FaStar className="text-yellow-400" />
-											{item.vote_average.toFixed(1)}
-										</p>
-										<div className="flex gap-2 pl-2 line-clamp-1 text-slate-400 border-l-[1px] border-slate-600">
-											{genres.map((genre) => {
-												if (item.genre_ids.slice(0, 1).includes(genre.id)) {
-													return (
-														<p key={genre.id} className="line-clamp-1">
-															{genre.name}
-														</p>
-													);
-												}
-											})}
-											{item.genre_ids.length === 0 && <p>Other</p>}
+													: "text-base md:text-lg"
+											}`}>
+											<p className="flex items-center gap-1">
+												<FaStar className="text-yellow-400" />
+												{item.vote_average.toFixed(1)}
+											</p>
+											<div className="flex gap-2 pl-2 line-clamp-1 text-slate-400 border-l-[1px] border-slate-600">
+												{genres.map((genre) => {
+													if (item.genre_ids.slice(0, 1).includes(genre.id)) {
+														return (
+															<p key={genre.id} className="line-clamp-1">
+																{genre.name}
+															</p>
+														);
+													}
+												})}
+												{item.genre_ids.length === 0 && <p>Other</p>}
+											</div>
 										</div>
 									</div>
-								</div>
+								</Link>
 							</CarouselItem>
 						);
 					})}

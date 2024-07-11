@@ -12,6 +12,8 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { cn } from "@/lib/utils";
 import GenresDropdownMenu from "./GenresDropdownMenu";
 import { usePathname } from "next/navigation";
+import { logoutUser } from "@/lib/actions/user.actions";
+import AvatarMenu from "./AvatarMenu";
 
 const Navbar = ({ user, genres }: { user: User; genres: GenreInterface[] }) => {
 	const { name } = user;
@@ -27,6 +29,8 @@ const Navbar = ({ user, genres }: { user: User; genres: GenreInterface[] }) => {
 			setScroll(window.scrollY > 10);
 		};
 
+		handleScroll();
+
 		window.addEventListener("scroll", handleScroll);
 
 		return () => {
@@ -36,10 +40,10 @@ const Navbar = ({ user, genres }: { user: User; genres: GenreInterface[] }) => {
 
 	return (
 		<div
-			className={`wrapper fixed top-0 w-full flex justify-between items-center py-3 xs:py-4 md:py-6 z-50 ${
+			className={`wrapper fixed top-0 w-full flex justify-between items-center py-3 xs:py-4 md:py-6 z-[100] ${
 				scroll ? "bg-[#1c1d21f3]" : ""
 			}`}>
-			<div className="flex items-center gap-1 md:gap-2">
+			<Link href="/" className="flex items-center gap-1 md:gap-2">
 				<Image
 					src={logo}
 					width={40}
@@ -50,7 +54,7 @@ const Navbar = ({ user, genres }: { user: User; genres: GenreInterface[] }) => {
 				<p className="text-white text-xl xs:text-2xl font-semibold">
 					Moviecine
 				</p>
-			</div>
+			</Link>
 			<div className="hidden xl:flex gap-12 text-white text-lg">
 				{navLinks.map((item, i) => {
 					const { path, label } = item;
@@ -60,9 +64,12 @@ const Navbar = ({ user, genres }: { user: User; genres: GenreInterface[] }) => {
 						<Link
 							href={path}
 							key={i}
-							className={cn("text-slate-300 text-lg", {
-								"text-white": isActive,
-							})}>
+							className={cn(
+								"text-slate-300 text-lg hover:text-mainPink-1 transition-colors",
+								{
+									"text-white": isActive,
+								}
+							)}>
 							{label}
 						</Link>
 					);
@@ -85,11 +92,9 @@ const Navbar = ({ user, genres }: { user: User; genres: GenreInterface[] }) => {
 			</div>
 
 			<div className="hidden lg:flex items-center gap-8">
-				<SearchInput />
 				<GenresDropdownMenu genres={genres} />
-				<div className="flex items-center justify-center size-12 rounded-full bg-mainPink-2">
-					<p className="text-2xl font-bold">{name.slice(0, 1)}</p>
-				</div>
+				<SearchInput />
+				<AvatarMenu user={user} />
 				<MobileMenu user={user} />
 			</div>
 			<div className="flex lg:hidden items-center gap-4">

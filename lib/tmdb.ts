@@ -1,5 +1,3 @@
-import { GenreInterface, SearchResultsInterface } from "@/types";
-
 async function fetchDataFromTMDB(url: string, cacheTime?: number) {
 	const options = {
 		method: "GET",
@@ -13,13 +11,13 @@ async function fetchDataFromTMDB(url: string, cacheTime?: number) {
 	};
 
 	const response = await fetch(url, options);
-	const data = (await response.json()) as SearchResultsInterface;
+	const data = await response.json();
 
 	return data;
 }
 
-export const getMovieById = async (id: string) => {
-	const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
+export const getMovieById = async (id: string, type: string) => {
+	const url = `https://api.themoviedb.org/3/${type}/${id}?language=en-US`;
 	const data = await fetchDataFromTMDB(url);
 	return data;
 };
@@ -31,6 +29,11 @@ export const getPopularMovies = async (type: string) => {
 };
 export const getNowPlayingMovies = async () => {
 	const url = "https://api.themoviedb.org/3/movie/now_playing?page=1";
+	const data = await fetchDataFromTMDB(url);
+	return data.results;
+};
+export const getDiscoveredMovies = async (page: number, type: string) => {
+	const url = `https://api.themoviedb.org/3/discover/${type}?page=${page}&sort_by=popularity.desc`;
 	const data = await fetchDataFromTMDB(url);
 	return data.results;
 };

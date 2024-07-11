@@ -1,10 +1,14 @@
 "use server";
 
-import { IAuthUserParams } from "@/types";
+import { IAuthUserParams, ReviewType } from "@/types";
 import { createAdminClient, createSessionClient } from "../appwrite";
 import { cookies } from "next/headers";
-import { ID } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import { parseStringify } from "../utils";
+
+const DATABASE_ID = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
+const REVIEW_COLLECTION_ID =
+	process.env.NEXT_PUBLIC_APPWRITE_REVIEW_COLLECTION_ID;
 
 export const signIn = async (userData: IAuthUserParams) => {
 	const { email, password } = userData;
@@ -72,3 +76,33 @@ export async function logoutUser() {
 		return null;
 	}
 }
+
+export const createNewReview = async (review: ReviewType) => {
+	try {
+		const { database } = await createAdminClient();
+		const newReview = await database.createDocument(
+			DATABASE_ID!,
+			REVIEW_COLLECTION_ID!,
+			ID.unique(),
+			review
+		);
+
+		return parseStringify(newReview);
+	} catch (error) {
+		console.log("DATABASE ERROR: ", error);
+	}
+};
+
+export const getReviews = async (userId: string) => {
+	try {
+		const { database } = await createAdminClient();
+		const reviews = await database.listDocuments(
+			DATABASE_ID!,
+			REVIEW_COLLECTION_ID!,
+			[Query.equal("userID", userId)]
+		);
+		return parseStringify(reviews);
+	} catch (error) {
+		console.log(error);
+	}
+};
