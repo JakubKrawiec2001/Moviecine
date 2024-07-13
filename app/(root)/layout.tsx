@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { getGenres } from "@/lib/tmdb";
@@ -17,6 +18,7 @@ export default async function RootLayout({
 		<div className="text-white">
 			<Navbar user={user} genres={genres} />
 			<main>{children}</main>
+			<Footer />
 		</div>
 	);
 }

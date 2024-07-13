@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { FaCirclePlay } from "react-icons/fa6";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { IoIosAddCircleOutline } from "react-icons/io";
+import { CiBookmark } from "react-icons/ci";
 import imdbIcon from "@/public/icons/imdb.svg";
 import Link from "next/link";
 
@@ -83,7 +83,7 @@ const Hero = ({ movies, genres }: Props) => {
 										Trailer
 									</button>
 									<button className="flex items-center gap-2 md:gap-3 px-4 py-2 xs:px-5 md:px-6 md:py-4 text-base xs:text-lg md:text-xl font-semibold glassmorphism_white rounded-xl hover:bg-slate-300 hover:text-mainBlack-1 transition-colors">
-										<IoIosAddCircleOutline className="text-3xl" />
+										<CiBookmark className="text-3xl" />
 										Watchlist
 									</button>
 								</div>

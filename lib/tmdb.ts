@@ -22,8 +22,49 @@ export const getMovieById = async (id: string, type: string) => {
 	return data;
 };
 
-export const getPopularMovies = async (type: string) => {
-	const url = `https://api.themoviedb.org/3/${type}/popular?page=1`;
+export const getCast = async (type: string, id: string) => {
+	const url = `https://api.themoviedb.org/3/${type}/${id}/credits`;
+	const data = await fetchDataFromTMDB(url);
+	return data.cast;
+};
+export const getCrew = async (type: string, id: string) => {
+	const url = `https://api.themoviedb.org/3/${type}/${id}/credits`;
+	const data = await fetchDataFromTMDB(url);
+	return data.crew;
+};
+export const getSimilar = async (type: string, id: number) => {
+	const url = `https://api.themoviedb.org/3/${type}/${id}/similar?page=1`;
+	const data = await fetchDataFromTMDB(url);
+	return data.results;
+};
+export const getUsersReviews = async (type: string, id: number) => {
+	const url = `https://api.themoviedb.org/3/${type}/${id}/reviews?page=1`;
+	const data = await fetchDataFromTMDB(url);
+	return data.results;
+};
+export const getWatchProviders = async (type: string, id: number) => {
+	const url = `https://api.themoviedb.org/3/${type}/${id}/watch/providers`;
+	const data = await fetchDataFromTMDB(url);
+	return data.results;
+};
+export const getVideos = async (type: string, id: number) => {
+	const url = `https://api.themoviedb.org/3/${type}/${id}/videos`;
+	const data = await fetchDataFromTMDB(url);
+	return data.results;
+};
+
+export const getPopularMovies = async (type: string, page: number) => {
+	const url = `https://api.themoviedb.org/3/${type}/popular?${page}`;
+	const data = await fetchDataFromTMDB(url);
+	return data.results;
+};
+export const getUpcomingMovies = async () => {
+	const url = `https://api.themoviedb.org/3/movie/upcoming?page=1`;
+	const data = await fetchDataFromTMDB(url);
+	return data.results;
+};
+export const getOnTheAirSeries = async () => {
+	const url = `https://api.themoviedb.org/3/tv/on_the_air?page=1`;
 	const data = await fetchDataFromTMDB(url);
 	return data.results;
 };
@@ -47,4 +88,9 @@ export const getGenres = async (type: string) => {
 	const url = `https://api.themoviedb.org/3/genre/${type}/list`;
 	const data = await fetchDataFromTMDB(url);
 	return data.genres;
+};
+export const getStreamingProviders = async (type: string) => {
+	const url = `https://api.themoviedb.org/3/watch/providers/${type}`;
+	const data = await fetchDataFromTMDB(url);
+	return data.results;
 };

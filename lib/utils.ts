@@ -40,7 +40,6 @@ export const reviewSchema = z.object({
 		.max(500, {
 			message: "The review must contain a maximum of 500 characters",
 		}),
-	// rating: z.number().min(1, { message: "The minimum rating is one star" }),
 });
 
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));

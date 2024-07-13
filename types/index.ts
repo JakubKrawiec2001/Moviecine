@@ -154,3 +154,25 @@ export type ReviewType = {
 	description: string;
 	rating: number;
 };
+
+export type StreamingProvidersType = {
+	display_priorities: Record<string, number>;
+	display_priority: number;
+	logo_path: string;
+	provider_name: string;
+	provider_id: number;
+};
+
+export type CrewMember = {
+	adult: boolean;
+	gender: number;
+	id: number;
+	known_for_department: string;
+	name: string;
+	original_name: string;
+	popularity: number;
+	profile_path: string | null;
+	credit_id: string;
+	department: string;
+	job: string;
+};

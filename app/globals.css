@@ -91,6 +91,11 @@ html {
 .main_custom_scrollbar::-webkit-scrollbar-thumb {
 	background-color: #f51e51;
 }
+.text_stroke {
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: white;
+	color: #141414;
+}
 
 @layer utilities {
 	.main_btn {

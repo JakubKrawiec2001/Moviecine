@@ -9,6 +9,7 @@ import {
 	CarouselPrevious,
 } from "@/components/ui/carousel";
 import { MovieInterface } from "@/types";
+import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,6 +17,8 @@ import { useEffect, useState } from "react";
 type Props = {
 	data: MovieInterface[];
 };
+
+const poppins = Poppins({ subsets: ["latin"], weight: "800" });
 
 const Top10Carousel = ({ data }: Props) => {
 	const [api, setApi] = useState<CarouselApi>();
@@ -50,17 +53,22 @@ const Top10Carousel = ({ data }: Props) => {
 								className="basis-auto h-[150px] xs:h-[200px] md:h-[300px] cursor-pointer"
 								key={item.id}>
 								<Link
-									className="group flex items-center gap-2 md:gap-4 h-full"
+									className="relative group h-full"
 									href={`/details/${item.id}?type=movie`}>
-									<span className="text-[5em] md:text-[10em] font-extrabold text-[#b7b7b7] cursor-pointer group-hover:text-white transition-colors">
+									<p
+										className={`absolute bottom-[-30%] ${
+											i + 1 === 1 ? "left-0 md:left-10" : "-left-3 md:left-0 "
+										} text-[7em] xs:text-[10em] md:text-[14em] font-extrabold text-[#b7b7b7] cursor-pointer group-hover:text-white transition-colors text_stroke ${
+											poppins.className
+										}`}>
 										{i + 1}
-									</span>
+									</p>
 									<Image
 										src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
 										width={300}
 										height={500}
 										alt={item.title}
-										className="rounded-xl group-hover:scale-[1.02] w-full h-full transition-transform object-contain"
+										className="rounded-xl w-full h-full object-contain pl-[2em] md:pl-[6em]"
 									/>
 								</Link>
 							</CarouselItem>

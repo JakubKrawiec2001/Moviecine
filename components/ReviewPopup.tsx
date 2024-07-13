@@ -3,7 +3,6 @@
 import {
 	Dialog,
 	DialogContent,
-	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -18,11 +17,11 @@ import { Loader2 } from "lucide-react";
 import { User } from "@/types";
 import { createNewReview } from "@/lib/actions/user.actions";
 import { toast } from "./ui/use-toast";
-import StarRatings from "react-star-ratings";
+import StarRating from "./StarRating";
 
 const ReviewPopup = ({ movieId, user }: { movieId: string; user: User }) => {
 	const [isLoading, setIsLoading] = useState(false);
-	const [rating, setRating] = useState(1);
+	const [rating, setRating] = useState(0);
 	const {
 		register,
 		handleSubmit,
@@ -32,6 +31,7 @@ const ReviewPopup = ({ movieId, user }: { movieId: string; user: User }) => {
 		resolver: zodResolver(reviewSchema),
 		defaultValues: {
 			description: "",
+			rating: 0,
 		},
 	});
 
@@ -77,22 +77,16 @@ const ReviewPopup = ({ movieId, user }: { movieId: string; user: User }) => {
 						Review
 					</DialogTitle>
 				</DialogHeader>
-				<p className="text-4xl text-yellow-400">{rating}</p>
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<StarRatings
+					<StarRating
 						rating={rating}
-						starRatedColor="#e2b616"
-						starHoverColor="#e2b616"
 						changeRating={handleRatingChange}
 						numberOfStars={10}
-						name="rating"
-						starSpacing="2px"
-						starDimension="60px"
 					/>
 					<textarea
 						{...register("description")}
 						name="description"
-						className="w-full resize-none"
+						className="w-full resize-none mt-8"
 						placeholder="Review..."></textarea>
 					<Button
 						type="submit"

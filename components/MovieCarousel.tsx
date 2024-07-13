@@ -53,8 +53,8 @@ const MovieCarousel = ({ data, type, label, genres }: Props) => {
 								key={item.id}
 								className={`group ${
 									type === "all"
-										? "basis-[40%] lg:basis-[20%] xl:basis-[16%]  2xl:basis-[13%]"
-										: "basis-[50%] md:basis-1/2 lg:basis-[26%] xl:basis-[22%] 2xl:basis-[18%]"
+										? "basis-[40%] md:basis-[20%] xl:basis-[16%]  2xl:basis-[13%]"
+										: "basis-[50%] md:basis-[26%] xl:basis-[22%] 2xl:basis-[18%]"
 								}  cursor-pointer`}>
 								<Link
 									href={`/details/${item.id}?type=${

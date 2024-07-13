@@ -11,7 +11,6 @@ import {
 import { GenreInterface, MovieInterface } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
 import { FaCirclePlay } from "react-icons/fa6";
 import { CiBookmark } from "react-icons/ci";
 import imdbIcon from "@/public/icons/imdb.svg";

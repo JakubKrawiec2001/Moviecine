@@ -23,7 +23,7 @@ const MobileMenu = ({ user }: { user: User }) => {
 	};
 
 	return (
-		<div className="block xl:hidden">
+		<div className="block 2lg:hidden">
 			<Sheet>
 				<SheetTrigger className="flex items-center justify-center">
 					<IoMenu className="text-white text-4xl xs:text-[2.8rem]" />
