@@ -5,109 +5,112 @@
 *,
 *::before,
 *::after {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 .auth_bg {
-	background-image: url("/images/auth-img.jpg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+  background-image: url("/images/auth-img.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .glassmorphism {
-	background: rgba(0, 0, 0, 0.6);
-	backdrop-filter: blur(4px);
-	-webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 .glassmorphism_white {
-	background: rgba(144, 144, 144, 0.4);
-	backdrop-filter: blur(4px);
-	-webkit-backdrop-filter: blur(4px);
+  background: rgba(144, 144, 144, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 .glassmorphism_gray {
-	background: rgba(54, 54, 54, 0.6);
-	backdrop-filter: blur(4px);
-	-webkit-backdrop-filter: blur(4px);
+  background: rgba(54, 54, 54, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 .hero_gradient {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: rgb(20, 20, 20);
-	background: linear-gradient(
-		180deg,
-		rgba(20, 20, 20, 1) 4%,
-		rgba(20, 20, 20, 0.7903536414565826) 18%,
-		rgba(20, 20, 20, 0.48783263305322133) 50%,
-		rgba(20, 20, 20, 0.5858718487394958) 65%,
-		rgba(20, 20, 20, 1) 100%
-	);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(20, 20, 20);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 20, 20, 1) 4%,
+    rgba(20, 20, 20, 0.7903536414565826) 18%,
+    rgba(20, 20, 20, 0.48783263305322133) 50%,
+    rgba(20, 20, 20, 0.5858718487394958) 65%,
+    rgba(20, 20, 20, 1) 100%
+  );
 }
 .read_more {
-	position: relative;
+  position: relative;
 }
 
 .read_more::before {
-	content: "";
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	bottom: 0;
-	height: 1px;
-	width: 100%;
-	background-color: white;
-	transition: all 0.3s ease;
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: white;
+  transition: all 0.3s ease;
 }
 
 .read_more:hover::before {
-	background-color: #a41234;
+  background-color: #a41234;
 }
 
 .custom_genres_scrollbar::-webkit-scrollbar {
-	width: 8px;
+  width: 8px;
 }
 
 .custom_genres_scrollbar::-webkit-scrollbar-track {
-	background: #27272b;
+  background: #27272b;
 }
 
 .custom_genres_scrollbar::-webkit-scrollbar-thumb {
-	background-color: #141414;
+  background-color: #141414;
 }
 .main_custom_scrollbar::-webkit-scrollbar {
-	width: 8px;
+  width: 8px;
 }
 
 .main_custom_scrollbar::-webkit-scrollbar-track {
-	background: #27272b;
+  background: #27272b;
 }
 
 .main_custom_scrollbar::-webkit-scrollbar-thumb {
-	background-color: #f51e51;
+  background-color: #f51e51;
 }
 .text_stroke {
-	-webkit-text-stroke-width: 2px;
-	-webkit-text-stroke-color: white;
-	color: #141414;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: white;
+  color: #141414;
+}
+.details_list p:last-child .details_list_dot {
+  display: none;
 }
 
 @layer utilities {
-	.main_btn {
-		@apply bg-gradient-to-b from-mainPink-1 to-mainPink-2 rounded-xl hover:bg-gradient-to-b hover:from-mainBlack-1 hover:to-mainBlack-2 transition-colors;
-	}
-	.wrapper {
-		@apply px-4 md:px-6 lg:px-8 2xl:px-16;
-	}
-	.carousel_shadow_right {
-		@apply h-full w-[5%] bg-gradient-to-r from-[#14141444] to-mainBlack-1 hover:from-[#141414cf] hover:to-mainBlack-1 transition-all;
-	}
-	.carousel_shadow_left {
-		@apply h-full w-[5%] bg-gradient-to-l from-[#14141444] to-mainBlack-1 hover:from-[#141414cf] hover:to-mainBlack-1 transition-all;
-	}
+  .main_btn {
+    @apply bg-gradient-to-b from-mainPink-1 to-mainPink-2 rounded-xl hover:bg-gradient-to-b hover:from-mainBlack-1 hover:to-mainBlack-2 transition-colors;
+  }
+  .wrapper {
+    @apply px-4 md:px-6 lg:px-8 2xl:px-16 mx-auto max-w-[1900px];
+  }
+  .carousel_shadow_right {
+    @apply h-full w-[5%] bg-gradient-to-r from-[#14141444] to-mainBlack-1 hover:from-[#141414cf] hover:to-mainBlack-1 transition-all;
+  }
+  .carousel_shadow_left {
+    @apply h-full w-[5%] bg-gradient-to-l from-[#14141444] to-mainBlack-1 hover:from-[#141414cf] hover:to-mainBlack-1 transition-all;
+  }
 }
