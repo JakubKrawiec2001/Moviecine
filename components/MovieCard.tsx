@@ -9,8 +9,8 @@ const MovieCard = ({ movie }: { movie: MovieInterface }) => {
     <div key={movie.id} className="group cursor-pointer">
       {isLoading && (
         <div className="mb-4">
-          <div className="bg-slate-300 animate-pulse w-[300px] h-[500px] rounded-xl"></div>
-          <div className="bg-slate-300 animate-pulse w-[100px] h-[20px] rounded-xl mt-2"></div>
+          <div className="bg-slate-300 animate-pulse 2lg::w-[300px] h-[200px] 2lg::h-[500px] rounded-xl"></div>
+          <div className="bg-slate-300 animate-pulse w-[20%] h-[10px] md:w-[100px]   md:h-[20px] rounded-xl mt-2"></div>
         </div>
       )}
       <Image
@@ -21,7 +21,7 @@ const MovieCard = ({ movie }: { movie: MovieInterface }) => {
         className="rounded-xl object-fill group-hover:scale-[1.02]  transition-transform"
         onLoad={() => setIsLoading(false)}
       />
-      <div className="flex justify-between mt-3">
+      <div className="flex flex-col lg:flex-row justify-between mt-1 md:mt-3">
         <p className="md:text-lg group-hover:text-slate-300 transition-colors line-clamp-1">
           {movie.media_type
             ? movie.media_type === "movie"
@@ -29,7 +29,7 @@ const MovieCard = ({ movie }: { movie: MovieInterface }) => {
               : movie.name
             : movie.title || movie.name}
         </p>
-        <p className="flex items-center gap-1">
+        <p className="flex items-center gap-1 text-sm md:text-base">
           <FaStar className="text-yellow-400" />
           {movie.vote_average ? movie.vote_average.toFixed(1) : "0"}
         </p>

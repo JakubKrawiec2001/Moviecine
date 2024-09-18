@@ -10,26 +10,24 @@ import AllMovies from "./AllMovies";
 
 let page = 1;
 
-const LoadMore = ({ genre }: { genre: string }) => {
+const LoadMore = ({ genre, type }: { genre: string; type: string }) => {
   const { ref, inView } = useInView();
   const [data, setData] = useState<MovieInterface[]>([]);
+
+  useEffect(() => {
+    setData([]);
+    page = 1;
+  }, [genre]);
+
   useEffect(() => {
     if (inView) {
-      getDiscoveredMovies(page, "movie", genre).then((res) => {
+      getDiscoveredMovies(page, type, genre).then((res) => {
         setData([...data, ...res]);
         page++;
       });
     }
-  }, [inView, data, genre]);
-  useEffect(() => {
-    if (!genre) return;
+  }, [inView, data, genre, type]);
 
-    setData([]);
-    page = 1;
-    getDiscoveredMovies(page, "movie", genre).then((res) => {
-      setData(res);
-    });
-  }, [genre]);
   return (
     <>
       <AllMovies movies={data} />

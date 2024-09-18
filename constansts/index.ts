@@ -13,7 +13,7 @@ export const navLinks = [
     label: "Movies",
   },
   {
-    path: "/tv-shows",
+    path: "/tv?genre=featured",
     label: "Tv Shows",
   },
   {

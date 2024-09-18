@@ -84,9 +84,15 @@ export const getDiscoveredMovies = async (
   type: string,
   genreId?: string | undefined
 ) => {
-  const url = `https://api.themoviedb.org/3/discover/${type}?page=${page}&sort_by=popularity${
-    genreId != "featured" ? `&with_genres=${genreId}.desc` : `.desc`
-  }`;
+  let url = "";
+  if (genreId) {
+    url = `https://api.themoviedb.org/3/discover/${type}?page=${page}&sort_by=popularity${
+      genreId != "featured" ? `&with_genres=${genreId}.desc` : ``
+    }`;
+  } else {
+    url = `https://api.themoviedb.org/3/discover/${type}?page=${page}&sort_by=popularity`;
+  }
+
   const data = await fetchDataFromTMDB(url);
   return data.results;
 };
