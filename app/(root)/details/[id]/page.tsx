@@ -69,6 +69,7 @@ const page = async ({
         data={movieDetails}
         searchParams={searchParams}
         crew={crew}
+        user={user}
       />
       <div className="wrapper flex flex-col lg:flex-row gap-16 2lg:gap-28 lg:mt-12 2lg:mt-16 xl:mt-0">
         <div className="flex flex-col gap-8 md:gap-12 lg:gap-16 2lg:w-[70%] order-1 lg:order-0">

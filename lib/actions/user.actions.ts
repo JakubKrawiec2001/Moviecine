@@ -77,6 +77,9 @@ export async function logoutUser() {
 	}
 }
 
+
+
+// TRZEBA TO PRZENIEŚĆ DO API
 export const createNewReview = async (review: ReviewType) => {
 	try {
 		const { database } = await createAdminClient();

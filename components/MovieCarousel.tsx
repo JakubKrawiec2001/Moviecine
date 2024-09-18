@@ -30,7 +30,6 @@ const MovieCarousel = ({ data, type, label, genres }: Props) => {
     if (!api) {
       return;
     }
-
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 

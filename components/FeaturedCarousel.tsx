@@ -75,7 +75,6 @@ const FeaturedCarousel = ({ data, genres }: Props) => {
       });
     }
   }, [current, filteredData, genres]);
-  console.log(data);
   return (
     <div className="relative flex flex-col lg:flex-row gap-[4em] 2lg:gap-[6em] justify-between items-center min-h-[70vh] md:min-h-[50vh] 2lg:min-h-[70vh] mt-[2em] 2lg:mt-[4em]">
       <div className="absolute w-full h-full inset-0 bg-gradient-to-r from-[#141414] via-[#1414140c] to-mainBlack-1 z-20"></div>

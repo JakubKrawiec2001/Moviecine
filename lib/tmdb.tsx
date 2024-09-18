@@ -1,5 +1,3 @@
-import AllMovies from "@/components/AllMovies";
-import { MovieInterface } from "@/types";
 async function fetchDataFromTMDB(url: string, cacheTime?: number) {
   const options = {
     method: "GET",

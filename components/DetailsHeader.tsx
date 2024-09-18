@@ -1,4 +1,4 @@
-import { MovieDetailsInterface, CrewMemberType } from "@/types";
+import { MovieDetailsInterface, CrewMemberType, User } from "@/types";
 import Image from "next/image";
 import React from "react";
 import imdbIcon from "@/public/icons/imdb.svg";
@@ -8,14 +8,16 @@ import { IoIosPeople } from "react-icons/io";
 import { FaCirclePlay } from "react-icons/fa6";
 import { CiBookmark } from "react-icons/ci";
 import { formatTime } from "@/lib/utils";
+import AddToWatchlistButton from "./AddToWatchlistButton";
 
 type Props = {
   data: MovieDetailsInterface;
   searchParams: { type: string };
   crew: CrewMemberType[];
+  user: User;
 };
 
-const DetailsHeader = ({ data, searchParams, crew }: Props) => {
+const DetailsHeader = ({ data, searchParams, crew, user }: Props) => {
   const getPercentage = (voteAverage: number) => {
     return Math.round(voteAverage * 10);
   };
@@ -130,10 +132,14 @@ const DetailsHeader = ({ data, searchParams, crew }: Props) => {
                 <FaCirclePlay className="text-2xl" />
                 Watch Trailer
               </button>
-              <button className="flex items-center gap-2 md:gap-3 px-4 py-3 xs:px-5 md:px-4  text-lg font-semibold glassmorphism_white rounded-xl hover:bg-slate-300 hover:text-mainBlack-1 transition-colors">
-                <CiBookmark className="text-2xl" />
-                Add to Watchlist
-              </button>
+
+              <AddToWatchlistButton
+                userId={user.$id}
+                movieId={data.id.toString()}
+                title={searchParams.type === "movie" ? data.title : data.name!}
+                mediaType={searchParams.type}
+                posterPath={data.poster_path}
+              />
             </div>
             <div className="flex md:hidden 2lg:flex flex-col gap-6 mt-[1em]">
               <div className="flex flex-col GAP-1">
