@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { WatchlistProvider } from "@/context/watchlistContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body
 				className={`${inter.className} bg-mainBlack-1 main_custom_scrollbar`}>
-				{children}
+				<WatchlistProvider>{children}</WatchlistProvider>
 				<Toaster />
 			</body>
 		</html>

@@ -9,7 +9,7 @@ export const navLinks = [
     label: "Home",
   },
   {
-    path: "/movies?genre=featured",
+    path: "/movie?genre=featured",
     label: "Movies",
   },
   {
@@ -32,7 +32,7 @@ export const mobileLinks = [
   {
     id: 2,
     label: "Movies",
-    path: "/movies",
+    path: "/movie",
     icon: movie,
   },
   {

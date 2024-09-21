@@ -144,7 +144,7 @@ const DetailsHeader = ({ data, searchParams, crew, user }: Props) => {
             <div className="flex md:hidden 2lg:flex flex-col gap-6 mt-[1em]">
               <div className="flex flex-col GAP-1">
                 <p className="text-slate-300 font-medium">OVERVIEW</p>
-                <p className="text-lg mt-1">{data.overview}</p>
+                <p className="text-lg mt-1 line-clamp-5">{data.overview}</p>
               </div>
               <div className="hidden 2lg:flex flex-wrap gap-10 ">
                 {crew?.slice(0, 6).map((item) => {
