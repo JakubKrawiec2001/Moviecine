@@ -111,3 +111,9 @@ export const getStreamingProviders = async (type: string) => {
   const data = await fetchDataFromTMDB(url);
   return data.results;
 };
+
+export const getSearchMovies = async (term: string) => {
+  const url = `https://api.themoviedb.org/3/search/multi?query=${term}`;
+  const data = await fetchDataFromTMDB(url);
+  return data.results;
+};

@@ -1,18 +1,11 @@
 "use client";
 
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { MovieInterface } from "@/types";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 
 type Props = {
   data: MovieInterface[];
@@ -21,40 +14,71 @@ type Props = {
 const poppins = Poppins({ subsets: ["latin"], weight: "800" });
 
 const Top10Carousel = ({ data }: Props) => {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isLeftArrowVisible, setIsLeftArrowVisible] = useState(false);
+  const [isRightArrowVisible, setIsRightArrowVisible] = useState(true);
 
-  useEffect(() => {
-    if (!api) {
-      return;
+  const checkArrowsVisibility = () => {
+    if (carouselRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+
+      setIsLeftArrowVisible(scrollLeft > 0);
+
+      setIsRightArrowVisible(scrollLeft + clientWidth < scrollWidth);
     }
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
+  };
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({
+        left: -600,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({
+        left: 600,
+        behavior: "smooth",
+      });
+    }
+  };
+  useEffect(() => {
+    const currentCarousel = carouselRef.current;
+
+    if (currentCarousel) {
+      currentCarousel.addEventListener("scroll", checkArrowsVisibility);
+
+      checkArrowsVisibility();
+    }
+
+    return () => {
+      if (currentCarousel) {
+        currentCarousel.removeEventListener("scroll", checkArrowsVisibility);
+      }
+    };
+  }, []);
 
   return (
     <div>
       <h2 className="text-xl xs:text-2xl md:text-3xl font-bold">
         Top 10 Now Playing
       </h2>
-      <Carousel
-        setApi={setApi}
-        className="mt-3 md:mt-6"
-        opts={{ dragFree: true, slidesToScroll: "auto" }}
-      >
-        <CarouselContent className="flex gap-[1em] md:gap-[2em] 2lg:gap-[4em]">
+      <div className="relative w-full mt-4 md:mt-8">
+        <div
+          ref={carouselRef}
+          className="flex overflow-x-scroll 2lg:overflow-x-hidden space-x-4 w-full snap-x snap-mandatory gap-[1em] md:gap-[2em] 2lg:gap-[4em] overflow-y-hidden"
+          style={{ scrollBehavior: "smooth", touchAction: "pan-x" }}
+        >
           {data
             .filter((item) => item.poster_path)
             .slice(0, 10)
             .map((item, i) => {
               return (
-                <CarouselItem
-                  className="basis-auto h-[150px] xs:h-[200px] md:h-[300px] cursor-pointer"
+                <div
+                  className="min-w-[150px] flex-shrink-0 h-[150px] xs:h-[200px] md:h-[300px] cursor-pointer"
                   key={item.id}
                 >
                   <Link
@@ -78,17 +102,27 @@ const Top10Carousel = ({ data }: Props) => {
                       className="rounded-xl w-full h-full object-contain pl-[2em] md:pl-[6em]"
                     />
                   </Link>
-                </CarouselItem>
+                </div>
               );
             })}
-        </CarouselContent>
-        {current !== 1 && (
-          <CarouselPrevious className="hidden 2lg:flex left-0 pb-12 border-none rounded-none carousel_shadow_left" />
+        </div>
+        {isLeftArrowVisible && (
+          <button
+            className="group absolute hidden 2lg:flex left-0 pb-12 border-none rounded-none carousel_shadow_left top-1/2 transform -translate-y-1/2 items-center justify-center"
+            onClick={scrollLeft}
+          >
+            <FaArrowLeft className="text-2xl group-hover:text-mainPink-2 transition-colors" />
+          </button>
         )}
-        {current !== count && (
-          <CarouselNext className="hidden 2lg:flex right-0 pb-12 border-none rounded-none carousel_shadow_right" />
+        {isRightArrowVisible && (
+          <button
+            className="group absolute hidden 2lg:flex right-0 pb-12 border-none rounded-none carousel_shadow_right top-1/2 transform -translate-y-1/2 items-center justify-center"
+            onClick={scrollRight}
+          >
+            <FaArrowRight className="text-2xl group-hover:text-mainPink-2 transition-colors" />
+          </button>
         )}
-      </Carousel>
+      </div>
     </div>
   );
 };

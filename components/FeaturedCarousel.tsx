@@ -86,7 +86,7 @@ const FeaturedCarousel = ({ data, genres }: Props) => {
         src={`https://image.tmdb.org/t/p/original/${currentMovie.imageSrc}`}
         className="absolute w-full h-full object-cover"
       />
-      <div className="flex flex-col gap-[5em] lg:w-1/2 z-50">
+      <div className="flex flex-col gap-[5em] lg:w-1/2 z-40">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl xs:text-2xl md:text-3xl font-bold">
             Featured in Moviecine
@@ -143,7 +143,7 @@ const FeaturedCarousel = ({ data, genres }: Props) => {
       </div>
       <Carousel
         setApi={setApi}
-        className="hidden lg:block w-1/2 z-50"
+        className="hidden lg:block w-1/2 z-40"
         opts={{ align: "start", loop: true, slidesToScroll: 1 }}
       >
         <CarouselContent className="flex items-center gap-4">

@@ -32,13 +32,13 @@ export const mobileLinks = [
   {
     id: 2,
     label: "Movies",
-    path: "/movie",
+    path: "/movie?genre=featured",
     icon: movie,
   },
   {
     id: 3,
     label: "Tv Shows",
-    path: "/tv-shows",
+    path: "/tv?genre=featured",
     icon: tvShow,
   },
   {

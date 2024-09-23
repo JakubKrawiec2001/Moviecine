@@ -1,6 +1,13 @@
-import { MovieDetailsInterface, CrewMemberType, User } from "@/types";
+"use client";
+
+import {
+  MovieDetailsInterface,
+  CrewMemberType,
+  User,
+  VideoType,
+} from "@/types";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import imdbIcon from "@/public/icons/imdb.svg";
 import { FaRegStar } from "react-icons/fa";
 import CircularProgress from "./CircularProgress";
@@ -9,15 +16,18 @@ import { FaCirclePlay } from "react-icons/fa6";
 import { CiBookmark } from "react-icons/ci";
 import { formatTime } from "@/lib/utils";
 import AddToWatchlistButton from "./AddToWatchlistButton";
+import MovieTrailerModal from "./MovieTrailerModal";
 
 type Props = {
   data: MovieDetailsInterface;
   searchParams: { type: string };
   crew: CrewMemberType[];
   user: User;
+  videos: VideoType[];
 };
 
-const DetailsHeader = ({ data, searchParams, crew, user }: Props) => {
+const DetailsHeader = ({ data, searchParams, crew, user, videos }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
   const getPercentage = (voteAverage: number) => {
     return Math.round(voteAverage * 10);
   };
@@ -36,7 +46,7 @@ const DetailsHeader = ({ data, searchParams, crew, user }: Props) => {
         <div className="absolute w-full h-full inset-0 bg-gradient-to-r from-[#141414] via-[#14141494] to-mainBlack-1 z-20"></div>
         <div className="absolute w-full h-full inset-0 bg-gradient-to-b from-[#141414] via-[#1414140c] to-mainBlack-1 z-20"></div>
         <div className="wrapper flex flex-col md:flex-row items-center gap-[2em] 2lg:gap-[4em]  min-h-[90vh] md:min-h-[50vh] lg:min-h-[40vh] 2lg:min-h-[90vh] mt-[6em] lg:mt-[4em] 2lg:mt-[8em] xl:mt-[4em]">
-          <div className="w-[80%] md:w-[50%] lg:w-[30%] 2lg:w-[50%] xl:w-[35%] 2xl:w-[25%]  h-full z-50">
+          <div className="w-[80%] md:w-[50%] lg:w-[30%] 2lg:w-[50%] xl:w-[35%] 2xl:w-[25%]  h-full z-40">
             <Image
               src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
               width={500}
@@ -45,7 +55,7 @@ const DetailsHeader = ({ data, searchParams, crew, user }: Props) => {
               className="object-cover rounded-xl w-full h-full"
             />
           </div>
-          <div className="flex flex-col gap-6 z-50 xs:w-[95%] md:w-[60%]">
+          <div className="flex flex-col gap-6 z-40 xs:w-[95%] md:w-[60%]">
             <div className="flex flex-col gap-1">
               <span className="text-lg 2lg:text-xl text-mainPink-1 font-extrabold uppercase">
                 {searchParams.type}
@@ -128,11 +138,20 @@ const DetailsHeader = ({ data, searchParams, crew, user }: Props) => {
               />
             </div>
             <div className="flex flex-wrap md:hidden 2lg:flex gap-3 xs:gap-4 md:gap-6 mt-[1em]">
-              <button className="main_btn flex items-center gap-2 md:gap-3 px-4 py-3 xs:px-5 md:px-4  text-lg font-semibold">
+              <button
+                className={`main_btn ${
+                  videos.length != 0 ? "flex" : "hidden"
+                } items-center gap-2 md:gap-3 px-4 py-3 xs:px-5 md:px-4  text-lg font-semibold`}
+                onClick={() => setIsOpen(true)}
+              >
                 <FaCirclePlay className="text-2xl" />
                 Watch Trailer
               </button>
-
+              <MovieTrailerModal
+                videos={videos}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
               <AddToWatchlistButton
                 userId={user.$id}
                 movieId={data.id.toString()}
@@ -160,24 +179,32 @@ const DetailsHeader = ({ data, searchParams, crew, user }: Props) => {
           </div>
         </div>
         <div className="hidden md:flex 2lg:hidden gap-3 xs:gap-4 md:gap-6 wrapper mt-[1em] lg:mt-0">
-          <button className="main_btn flex items-center gap-2 md:gap-3 px-4 py-3 xs:px-5 md:px-4  text-lg font-semibold z-50">
+          <button
+            className={`main_btn ${
+              videos.length != 0 ? "flex" : "hidden"
+            } items-center gap-2 md:gap-3 px-4 py-3 xs:px-5 md:px-4  text-lg font-semibold z-40`}
+            onClick={() => setIsOpen(true)}
+          >
             <FaCirclePlay className="text-2xl" />
             Watch Trailer
           </button>
-          <button className="flex items-center gap-2 md:gap-3 px-4 py-3 xs:px-5 md:px-4  text-lg font-semibold glassmorphism_white rounded-xl hover:bg-slate-300 hover:text-mainBlack-1 transition-colors z-50">
-            <CiBookmark className="text-2xl" />
-            Add to Watchlist
-          </button>
+          <AddToWatchlistButton
+            userId={user.$id}
+            movieId={data.id.toString()}
+            title={searchParams.type === "movie" ? data.title : data.name!}
+            mediaType={searchParams.type}
+            posterPath={data.poster_path}
+          />
         </div>
         <div className="hidden md:flex 2lg:hidden flex-col gap-6 mt-[2em] wrapper">
-          <div className="flex flex-col gap-1 z-50">
+          <div className="flex flex-col gap-1 z-40">
             <p className="text-slate-300 font-medium">OVERVIEW</p>
             <p className="text-lg mt-1">{data.overview}</p>
           </div>
           <div className="flex flex-wrap gap-10">
             {crew?.slice(0, 6).map((item) => {
               return (
-                <div className="flex flex-col z-50" key={item.id}>
+                <div className="flex flex-col z-40" key={item.id}>
                   <p className="text-xl font-medium">{item.name}</p>
                   <p className="text-slate-300 -mt-1">{item.job}</p>
                 </div>

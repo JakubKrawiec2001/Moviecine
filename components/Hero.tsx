@@ -8,8 +8,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { FaCirclePlay } from "react-icons/fa6";
-import { FaLongArrowAltRight } from "react-icons/fa";
-import { CiBookmark } from "react-icons/ci";
 import imdbIcon from "@/public/icons/imdb.svg";
 import Link from "next/link";
 
@@ -74,23 +72,17 @@ const Hero = ({ movies, genres }: Props) => {
                         </span>
                       </p>
                     </div>
-                    <Link
-                      href={`/details/${movie.id}?type=movie`}
-                      className="flex items-center gap-2 text-base xs:text-lg hover:text-mainPink-2 transition-colors cursor-pointer"
-                    >
-                      <span className="read_more">Details</span>
-                      <FaLongArrowAltRight />
-                    </Link>
                   </div>
                   <div className="flex gap-3 xs:gap-4 md:gap-6 mt-6 xs:mt-10  md:mt-12">
                     <button className="main_btn flex items-center gap-2 md:gap-3 px-4 py-2 xs:px-5 md:px-6 md:py-4 text-base xs:text-lg md:text-xl font-semibold">
                       <FaCirclePlay className="text-2xl" />
                       Trailer
                     </button>
-                    <button className="flex items-center gap-2 md:gap-3 px-4 py-2 xs:px-5 md:px-6 md:py-4 text-base xs:text-lg md:text-xl font-semibold glassmorphism_white rounded-xl hover:bg-slate-300 hover:text-mainBlack-1 transition-colors">
-                      <CiBookmark className="text-3xl" />
-                      Watchlist
-                    </button>
+                    <Link href={`/details/${movie.id}?type=movie`}>
+                      <button className="flex items-center gap-2 md:gap-3 px-4 py-2 xs:px-5 md:px-6 md:py-4 text-base xs:text-lg md:text-xl font-semibold glassmorphism_white rounded-xl hover:bg-slate-300 hover:text-mainBlack-1 transition-colors">
+                        Details
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </CarouselItem>
