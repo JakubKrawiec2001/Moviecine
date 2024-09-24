@@ -1,7 +1,6 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
-import { getGenres } from "@/lib/tmdb";
 import { redirect } from "next/navigation";
 
 export default async function RootLayout({
@@ -11,10 +10,9 @@ export default async function RootLayout({
 }>) {
   const user = await getLoggedInUser();
   if (!user) redirect("/sign-in");
-  const genres = await getGenres("movie");
   return (
     <div className="text-white">
-      <Navbar user={user} genres={genres} />
+      <Navbar user={user} />
       <main>{children}</main>
       <Footer />
     </div>
