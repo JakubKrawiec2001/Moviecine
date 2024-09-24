@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaStar } from "react-icons/fa6";
+import { IoArrowRedoSharp } from "react-icons/io5";
 
 type ReviewTypeProps = {
   documents: ReviewType[];
@@ -26,9 +27,19 @@ md:mt-36"
       </h1>
       <div className="flex flex-col 2lg:flex-row justify-between items-start mt-12 md:mt-20 gap-12 lg:gap-16 2lg:gap-0">
         <div className="flex flex-wrap gap-6 2lg:w-[70%]">
-          {reviews.documents.map((item) => {
-            return <ReviewCard key={item.$id} data={item} />;
-          })}
+          {reviews.documents?.length != 0 ? (
+            reviews.documents?.map((item) => {
+              return <ReviewCard key={item?.$id} data={item} />;
+            })
+          ) : (
+            <Link
+              href="/"
+              className="text-slate-300 md:text-lg underline hover:text-white transition-colors flex items-center gap-2"
+            >
+              Rate your first movie or series
+              <IoArrowRedoSharp className="text-lg md:text-xl" />
+            </Link>
+          )}
         </div>
         <div className="2lg:w-[30%] min-h-[50vh]">
           <h2 className="text-xl xs:text-2xl md:text-3xl font-bold border-l-[3px] border-mainPink-1 pl-2">
