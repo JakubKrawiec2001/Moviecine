@@ -17,6 +17,7 @@ import { CiBookmark } from "react-icons/ci";
 import { formatTime } from "@/lib/utils";
 import AddToWatchlistButton from "./AddToWatchlistButton";
 import MovieTrailerModal from "./MovieTrailerModal";
+import ReviewPopup from "./ReviewPopup";
 
 type Props = {
   data: MovieDetailsInterface;
@@ -120,10 +121,15 @@ const DetailsHeader = ({ data, searchParams, crew, user, videos }: Props) => {
               </div>
               <div className="flex flex-col md:gap-1">
                 <p className="text-slate-300 font-medium">YOUR RATING</p>
-                <button className="2lg:hover:text-yellow-600 transition-all 2lg:hover:underline flex items-center gap-1 text-xl text-yellow-400">
-                  <FaRegStar className="text-2xl" />
-                  Add Rating
-                </button>
+                <ReviewPopup
+                  movieId={data.id.toString()}
+                  user={user}
+                  title={
+                    searchParams.type === "movie" ? data.title : data.name!
+                  }
+                  mediaType={searchParams.type}
+                  posterPath={data.poster_path}
+                />
               </div>
               <div className="flex flex-col md:gap-1">
                 <p className="text-slate-300 font-medium">POPULARITY</p>

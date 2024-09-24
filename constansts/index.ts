@@ -2,6 +2,7 @@ import movie from "@/public/icons/movie.svg";
 import tvShow from "@/public/icons/tv-show.svg";
 import home from "@/public/icons/home.svg";
 import watchlist from "@/public/icons/watchlist.svg";
+import star from "@/public/icons/star.svg";
 
 export const navLinks = [
   {
@@ -46,5 +47,11 @@ export const mobileLinks = [
     label: "Watchlist",
     path: "/watchlist",
     icon: watchlist,
+  },
+  {
+    id: 5,
+    label: "Your Rating",
+    path: "/reviews",
+    icon: star,
   },
 ];

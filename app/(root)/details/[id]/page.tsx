@@ -1,5 +1,4 @@
-import ReviewPopup from "@/components/ReviewPopup";
-import { getLoggedInUser, getReviews } from "@/lib/actions/user.actions";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import {
   getCast,
   getCrew,
@@ -9,12 +8,7 @@ import {
   getVideos,
   getWatchProviders,
 } from "@/lib/tmdb";
-import {
-  CrewMemberType,
-  MovieDetailsInterface,
-  ReviewType,
-  VideoType,
-} from "@/types";
+import { CrewMemberType, MovieDetailsInterface, VideoType } from "@/types";
 import DetailsHeader from "@/components/DetailsHeader";
 import AllVideos from "@/components/AllVideos";
 import MovieImages from "@/components/MovieImages";
@@ -22,10 +16,6 @@ import Cast from "@/components/Cast";
 import Crew from "@/components/Crew";
 import RightPanel from "@/components/RightPanel";
 import UserReviews from "@/components/UserReviews";
-
-type ReviewTypeProps = {
-  documents: ReviewType[];
-};
 
 const page = async ({
   params,
@@ -38,7 +28,6 @@ const page = async ({
 
   const { id: itemId } = params;
 
-  const reviews: ReviewTypeProps = await getReviews(user.$id);
   const movieDetails: MovieDetailsInterface = await getMovieById(
     itemId,
     searchParams.type
@@ -74,9 +63,13 @@ const page = async ({
       <div className="wrapper flex flex-col lg:flex-row gap-16 2lg:gap-28 lg:mt-12 2lg:mt-16 xl:mt-0">
         <div className="flex flex-col gap-8 md:gap-12 lg:gap-16 2lg:w-[70%] order-1 lg:order-0">
           {filteredVideos.length != 0 && <AllVideos videos={filteredVideos} />}
-          <MovieImages images={images} />
-          <Cast cast={cast} id={params.id} type={searchParams.type} />
-          <Crew crew={crew} id={params.id} type={searchParams.type} />
+          {images.length != 0 && <MovieImages images={images} />}
+          {cast.length != 0 && (
+            <Cast cast={cast} id={params.id} type={searchParams.type} />
+          )}
+          {crew.length != 0 && (
+            <Crew crew={crew} id={params.id} type={searchParams.type} />
+          )}
           <UserReviews userReviews={userReviews} />
         </div>
         <RightPanel
@@ -88,7 +81,6 @@ const page = async ({
           producer={producer}
         />
       </div>
-      {/* <ReviewPopup movieId={itemId} user={user} /> */}
     </div>
   );
 };

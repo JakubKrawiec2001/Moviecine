@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { logoutUser } from "@/lib/actions/user.actions";
 import AvatarMenu from "./AvatarMenu";
 
 const Navbar = ({ user }: { user: User }) => {
@@ -75,22 +74,6 @@ const Navbar = ({ user }: { user: User }) => {
             );
           })}
         </div>
-        <div
-          className={cn(
-            "flex justify-between items-center bg-mainBlack-2 fixed -top-[100%] left-0 min-h-[10vh] w-full p-4 transition-all",
-            { "top-0": open }
-          )}
-        >
-          <input
-            type="search"
-            className="bg-transparent xs:text-xl outline-none"
-            placeholder="Search ..."
-          />
-          <IoIosCloseCircle
-            className="text-white text-3xl xs:text-4xl"
-            onClick={handleOpenSearchInput}
-          />
-        </div>
 
         <div className="hidden lg:flex items-center gap-8">
           <SearchInput />
@@ -99,9 +82,23 @@ const Navbar = ({ user }: { user: User }) => {
         </div>
         <div className="flex lg:hidden items-center gap-4">
           <FaSearch
-            className="2lg:hidden text-2xl xs:text-[1.6rem]"
+            className="lg:hidden text-2xl xs:text-[1.6rem]"
             onClick={handleOpenSearchInput}
           />
+          {open && (
+            <div
+              className={cn(
+                "flex justify-between items-center bg-mainBlack-2 fixed -top-[100%] left-0 min-h-[10vh] w-full p-4 transition-all",
+                { "top-0": open }
+              )}
+            >
+              <SearchInput />
+              <IoIosCloseCircle
+                className="text-white text-3xl xs:text-4xl"
+                onClick={handleOpenSearchInput}
+              />
+            </div>
+          )}
           <MobileMenu user={user} />
         </div>
       </div>

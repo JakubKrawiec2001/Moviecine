@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 import spinner from "../public/icons/spinner.svg";
@@ -24,9 +24,11 @@ const AddToWatchlistButton = ({
   mediaType,
 }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isInWatchlist, setIsInWatchlist] = useState(false);
 
   const { handleDelete, watchlistData, setWatchlistData } = useWatchlist();
+  const isInWatchlist = watchlistData.some(
+    (item: WatchlistType) => item.movieId === movieId
+  );
 
   const addToWatchlist = async (
     movieId: string,
@@ -35,9 +37,10 @@ const AddToWatchlistButton = ({
     posterPath: string,
     mediaType: string
   ) => {
+    if (isLoading) return;
+    if (isInWatchlist) return;
     try {
       setIsLoading(true);
-      setIsInWatchlist(true);
       const response = await fetch("/api/watchlist", {
         method: "POST",
         headers: {
@@ -53,7 +56,6 @@ const AddToWatchlistButton = ({
       });
 
       if (!response.ok) {
-        setIsInWatchlist(false);
         throw new Error("Failed to add to watchlist");
       }
 
@@ -67,45 +69,23 @@ const AddToWatchlistButton = ({
     }
   };
 
-  const fetchWatchlist = useCallback(
-    async (userId: string) => {
-      try {
-        const response = await fetch("/api/watchlist", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            userId,
-          },
-        });
-        const watchlist = await response.json();
-
-        const isInList = watchlist.some(
-          (item: any) => item.movieId === movieId
-        );
-
-        setIsInWatchlist(isInList);
-      } catch (error) {
-        console.error("Error fetching watchlist:", error);
-      }
-    },
-    [movieId]
-  );
   const handleDeleteByMovieId = (movieId: string) => {
+    if (isLoading) return;
     const item = watchlistData.find((item) => item.movieId === movieId);
 
     if (item) {
       handleDelete(item.$id);
-      setIsInWatchlist(false);
+      // @ts-ignore
+      setWatchlistData((prevData: WatchlistType[]) => {
+        return prevData.filter(
+          (watchlistItem) => watchlistItem.movieId !== movieId
+        ) as WatchlistType[];
+      });
     } else {
       console.error("Item not found in watchlist");
     }
   };
 
-  useEffect(() => {
-    if (userId) {
-      fetchWatchlist(userId);
-    }
-  }, [userId, fetchWatchlist]);
   return (
     <>
       {!isInWatchlist ? (
