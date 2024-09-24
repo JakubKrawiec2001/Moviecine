@@ -9,7 +9,7 @@ const ReviewCard = ({ data }: { data: ReviewType }) => {
   return (
     <Link
       href={`/details/${data.movie_id}?type=${data.mediaType}`}
-      key={data.$id}
+      key={data?.$id}
       className="lg:w-[48%] 2lg:w-[45%] flex flex-col md:flex-row 2lg:flex-col xl:flex-row md:items-center 2lg:items-start xl:items-center gap-4 border-[2px] border-mainBlack-3 p-4 rounded-xl hover:border-slate-600 transition-colors"
     >
       <Image

@@ -16,7 +16,7 @@ type ReviewTypeProps = {
 const page = async () => {
   const user = await getLoggedInUser();
   const nowTrendingAll = await getAllTrending();
-  const reviews: ReviewTypeProps = await getReviews(user.$id);
+  const reviews: ReviewTypeProps = await getReviews(user?.$id);
   return (
     <div
       className="wrapper mt-24 xs:mt-28
