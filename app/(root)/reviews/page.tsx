@@ -8,6 +8,7 @@ import Link from "next/link";
 import React from "react";
 import { FaStar } from "react-icons/fa6";
 import { IoArrowRedoSharp } from "react-icons/io5";
+import { redirect } from "next/navigation";
 
 type ReviewTypeProps = {
   documents: ReviewType[];
@@ -15,6 +16,9 @@ type ReviewTypeProps = {
 
 const page = async () => {
   const user = await getLoggedInUser();
+  if (!user) {
+    redirect("/sign-in");
+  }
   const nowTrendingAll = await getAllTrending();
   const reviews: ReviewTypeProps = await getReviews(user?.$id);
   return (
