@@ -43,7 +43,7 @@ const AvatarMenu = ({ user }: { user: User }) => {
             </NavigationMenuLink>
             <NavigationMenuLink>
               <Link
-                href="/reviews"
+                href="/watchlist"
                 className="border-l-[3px] md:text-lg  border-mainPink-1 pl-2 hover:text-slate-300 transition-colors"
               >
                 Your Watchlist
