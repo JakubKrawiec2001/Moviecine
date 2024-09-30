@@ -9,11 +9,9 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import imdbIcon from "@/public/icons/imdb.svg";
-import { FaRegStar } from "react-icons/fa";
 import CircularProgress from "./CircularProgress";
 import { IoIosPeople } from "react-icons/io";
 import { FaCirclePlay } from "react-icons/fa6";
-import { CiBookmark } from "react-icons/ci";
 import { formatTime } from "@/lib/utils";
 import AddToWatchlistButton from "./AddToWatchlistButton";
 import MovieTrailerModal from "./MovieTrailerModal";

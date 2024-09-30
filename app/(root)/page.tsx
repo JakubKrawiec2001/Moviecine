@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import MovieCarousel from "@/components/MovieCarousel";
 import StreamingProvidersList from "@/components/StreamingProvidersList";
 import Top10Carousel from "@/components/Top10Carousel";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import {
   getAllTrending,
   getDiscoveredMovies,
@@ -26,6 +27,7 @@ export default async function Home() {
   const upcomingMovies = await getUpcomingMovies();
   const onAirSeries = await getOnTheAirSeries();
   const streamingProviders = await getStreamingProviders("movie");
+  const user = await getLoggedInUser();
   return (
     <>
       <Hero movies={nowPlayingMovies} genres={getMovieGenres} />
@@ -50,7 +52,11 @@ export default async function Home() {
           genres={getSeriesGenres}
         />
         <Top10Carousel data={nowPlayingMovies} />
-        <FeaturedCarousel data={featuredMovies} genres={getMovieGenres} />
+        <FeaturedCarousel
+          data={featuredMovies}
+          genres={getMovieGenres}
+          user={user}
+        />
         <MovieCarousel
           type="all"
           label="Best Upcoming Movies"

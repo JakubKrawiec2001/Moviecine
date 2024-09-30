@@ -8,17 +8,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { GenreInterface, MovieInterface } from "@/types";
+import { GenreInterface, MovieInterface, User } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaCirclePlay } from "react-icons/fa6";
 import { CiBookmark } from "react-icons/ci";
 import imdbIcon from "@/public/icons/imdb.svg";
 import Link from "next/link";
+import { FaInfoCircle } from "react-icons/fa";
+import AddToWatchlistButton from "./AddToWatchlistButton";
 
 type Props = {
   data: MovieInterface[];
   genres: GenreInterface[];
+  user: User;
 };
 
 type CurrentMovieType = {
@@ -28,9 +30,11 @@ type CurrentMovieType = {
   genres: string[];
   rating: number;
   date: string;
+  id: string;
+  posterPath: string;
 };
 
-const FeaturedCarousel = ({ data, genres }: Props) => {
+const FeaturedCarousel = ({ data, genres, user }: Props) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [filteredData, setFilteredData] = useState<MovieInterface[]>([]);
@@ -41,6 +45,8 @@ const FeaturedCarousel = ({ data, genres }: Props) => {
     genres: [],
     rating: 0,
     date: "",
+    id: "",
+    posterPath: "",
   });
 
   useEffect(() => {
@@ -72,6 +78,8 @@ const FeaturedCarousel = ({ data, genres }: Props) => {
         ),
         rating: movie.vote_average,
         date: movie.release_date,
+        id: movie.id.toString(),
+        posterPath: movie.poster_path,
       });
     }
   }, [current, filteredData, genres]);
@@ -130,14 +138,19 @@ const FeaturedCarousel = ({ data, genres }: Props) => {
             {currentMovie.description}
           </p>
           <div className="flex gap-3 xs:gap-4 md:gap-6 mt-6 xs:mt-10  md:mt-12">
-            <button className="main_btn flex items-center gap-2 md:gap-3 px-4 py-2 xs:px-5 md:px-6 md:py-4 text-base xs:text-lg md:text-xl font-semibold">
-              <FaCirclePlay className="text-2xl" />
-              Trailer
-            </button>
-            <button className="flex items-center gap-2 md:gap-3 px-4 py-2 xs:px-5 md:px-6 md:py-4 text-base xs:text-lg md:text-xl font-semibold glassmorphism_white rounded-xl hover:bg-slate-300 hover:text-mainBlack-1 transition-colors">
-              <CiBookmark className="text-3xl" />
-              Watchlist
-            </button>
+            <Link href={`/details/${currentMovie.id}?type=movie`}>
+              <button className="main_btn flex items-center gap-2 md:gap-3 px-4 py-2 xs:px-5 md:px-6 md:py-4 text-base xs:text-lg md:text-xl font-semibold">
+                <FaInfoCircle className="text-2xl" />
+                Details
+              </button>
+            </Link>
+            <AddToWatchlistButton
+              userId={user.$id}
+              movieId={currentMovie.id}
+              title={currentMovie.name}
+              mediaType={"movie"}
+              posterPath={currentMovie.posterPath}
+            />
           </div>
         </div>
       </div>
