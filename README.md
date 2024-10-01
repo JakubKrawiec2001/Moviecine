@@ -35,20 +35,7 @@ The backend for the application is deployed on Appwrite, ensuring secure user da
 
 <br />
 
-## Languages and Tools:
-<div>
-  <img width=80px src="https://cdn.iconscout.com/icon/free/png-512/free-react-1-282599.png?f=webp&w=256">&nbsp; &nbsp; &nbsp;
-  <img width=80px src="https://cdn.iconscout.com/icon/free/png-512/free-typescript-1174965.png?f=webp&w=256">&nbsp; &nbsp; &nbsp;
-  <img width=80px src="https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png">&nbsp; &nbsp; &nbsp;
-  <img width=80px src="https://cdn.iconscout.com/icon/free/png-512/free-mongodb-3-1175138.png?f=webp&w=256">&nbsp; &nbsp; &nbsp;
-  <img width=80px src="https://cdn.iconscout.com/icon/free/png-512/free-stripe-3521744-2945188.png?f=webp&w=256">&nbsp; &nbsp; &nbsp;
-  <img width=80px src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsTGKB21_5dpTYwXze9c4qIcxyWKIH60ijLO_3UDf2wVIjDf68fcfwaU2Ik8N-bx8nWzA&usqp=CAU">&nbsp; &nbsp; &nbsp;
-  <img width=80px src="https://cdn.iconscout.com/icon/free/png-512/free-sass-226054.png?f=webp&w=256">&nbsp; &nbsp; &nbsp;
-</div>
-
-</br>
-
-## Screenshots
+## Mockup
 
 <br />
 
