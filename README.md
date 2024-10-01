@@ -1,6 +1,6 @@
 <h1 align="center" style="font-size: 50px">Moviecine</h1>
 <hr>
-<img src="./src/public/readme-images/moviecine-mockup.jpg" width="1000" style="margin-left: 20px">
+<img src="./public/readme-images/moviecine-mockup.jpg" width="1000" style="margin-left: 20px">
 
 <br />
 
@@ -31,6 +31,6 @@ The project was made with the goal of creating a responsive and modern online st
 
 <br />
 
-<img src="./src/public/readme-images/moviecine.jpg">
+<img src="./public/readme-images/moviecine.jpg">
 
 
