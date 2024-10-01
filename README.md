@@ -22,6 +22,17 @@ Thanks to the integration with the TMDB API, Moviecine provides up-to-date infor
 
 The backend for the application is deployed on Appwrite, ensuring secure user data handling and seamless interaction between frontend and backend.
 
+<p>Tech Stack:</p>
+<ul>
+  <li>Next.js</li>
+  <li>Appwrite</li>
+  <li>Typescript</li>
+  <li>TailwindCSS</li>
+  <li>ShadCN</li>
+  <li>ZOD</li>
+  <li>React Hook Form</li>
+</ul>
+
 <br />
 
 ## Languages and Tools:
