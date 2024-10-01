@@ -10,7 +10,17 @@
 
 ## Introduction
 
-The project was made with the goal of creating a responsive and modern online store that allows easy online shopping for electronics. The goal was to combine advanced technologies such as React, MongoDB and Stripe to create a comprehensive e-commerce platform. Some of the key functionalities of Mernstore are: adding products to the shopping cart, saving selected products to the favorites list, thanks to the stripe in the test version it is possible to simulate the purchase of products. There is also a login panel and new user registration. The website's backend was deployed on the Render platform [Backend repo](https://github.com/JakubKrawiec2001/Mernstore---backend)  
+Moviecine is a responsive and modern web application designed for reviewing movies and TV shows, similar to platforms like IMDb. This project was developed using cutting-edge technologies such as Next.js, TypeScript, and Appwrite to create a comprehensive platform for film enthusiasts.
+
+Some of the key functionalities of Moviecine include:
+
+- Adding movies and TV shows to a personalized watchlist
+- Writing and posting reviews for movies and series
+- User authentication and profile management
+  
+Thanks to the integration with the TMDB API, Moviecine provides up-to-date information about movies and shows. Users can optimize their experience through server-side rendering (SSR) and custom Next.js API routes for smooth data management.
+
+The backend for the application is deployed on Appwrite, ensuring secure user data handling and seamless interaction between frontend and backend.
 
 <br />
 
