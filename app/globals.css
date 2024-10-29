@@ -104,6 +104,9 @@ html {
   .main_btn {
     @apply bg-gradient-to-b from-mainPink-1 to-mainPink-2 rounded-xl hover:bg-gradient-to-b hover:from-mainBlack-1 hover:to-mainBlack-2 transition-colors;
   }
+  .second_btn {
+    @apply bg-gradient-to-b from-mainBlack-1 to-mainBlack-2 rounded-xl hover:bg-gradient-to-b hover:from-mainBlack-3 hover:to-mainBlack-3 transition-colors;
+  }
   .disabled_main_btn {
     @apply bg-gradient-to-b from-mainPink-1 to-mainPink-2 rounded-xl opacity-50;
   }

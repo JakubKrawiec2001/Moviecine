@@ -11,18 +11,9 @@ const Footer = () => {
         <FaInstagram />
         <FaTiktok />
       </div>
-      <div className="flex flex-col items-center md:items-end gap-4">
-        <p className="text-lg text-center">
-          @ {currentYear} Moviecine, All rights reserved
-        </p>
-        <div className="flex flex-wrap justify-center items-center gap-4 2lg:gap-8 text-xl font-light">
-          <p>Home</p>
-          <p>Movies</p>
-          <p>Tv Shows</p>
-          <p>Watchlist</p>
-          <p>My Reviews</p>
-        </div>
-      </div>
+      <p className="text-lg text-center">
+        @ {currentYear} Moviecine, All rights reserved
+      </p>
     </div>
   );
 };

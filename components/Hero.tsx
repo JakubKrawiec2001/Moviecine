@@ -61,8 +61,10 @@ const Hero = ({ movies, genres }: Props) => {
                     </div>
                     <GoDotFill className="text-[#ddd] opacity-50 hidden md:block" />
                     <div className="hidden md:flex items-center gap-2">
-                      {genres.slice(0, 4).map((item) => {
-                        if (movie.genre_ids.includes(item.id)) {
+                      {genres
+                        .filter((item) => movie.genre_ids.includes(item.id))
+                        .slice(0, 2)
+                        .map((item) => {
                           return (
                             <p
                               key={item.id}
@@ -71,8 +73,7 @@ const Hero = ({ movies, genres }: Props) => {
                               {item.name}
                             </p>
                           );
-                        }
-                      })}
+                        })}
                     </div>
                     <GoDotFill className="text-[#ddd] opacity-50" />
                     <p className="text-lg xs:text-xl font-semibold text-slate-200">
