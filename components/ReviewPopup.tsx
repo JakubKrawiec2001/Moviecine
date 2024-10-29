@@ -187,6 +187,9 @@ const ReviewPopup = ({
             className="w-full resize-none h-36 p-4 rounded-xl bg-slate-100"
             placeholder="Review..."
           ></textarea>
+          {errors.description && (
+            <p className="text-red-600">{errors.description.message}</p>
+          )}
           <Button
             type="submit"
             className="main_btn w-full md:text-xl md:p-6  text-white font-semibold mt-4"
