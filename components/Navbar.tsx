@@ -1,4 +1,5 @@
 "use client";
+
 import logo from "@/public/icons/logo.svg";
 import Image from "next/image";
 import { navLinks } from "@/constansts/index";

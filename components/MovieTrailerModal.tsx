@@ -23,7 +23,6 @@ const MovieTrailerModal = ({ videos, isOpen, setIsOpen }: Props) => {
       } fixed top-0 left-0 bottom-0 right-0 bg-[#000000da] h-screen w-full flex items-center justify-center z-[1000]`}
     >
       {videos?.slice(0, 1).map((video) => {
-        console.log(video);
         return (
           <div
             key={video.id}
@@ -37,8 +36,8 @@ const MovieTrailerModal = ({ videos, isOpen, setIsOpen }: Props) => {
               {" "}
               <YouTube
                 videoId={video.key}
-                className="w-full h-full" 
-                iframeClassName="w-full h-full" 
+                className="w-full h-full"
+                iframeClassName="w-full h-full"
                 onReady={(event: YouTubeEvent) => {
                   playerRef.current = event.target;
                 }}

@@ -1,6 +1,6 @@
 "use server";
 
-async function fetchDataFromTMDB(url: string, cacheTime?: number) {
+async function fetchDataFromTMDB(url: string) {
   const options = {
     method: "GET",
     headers: {

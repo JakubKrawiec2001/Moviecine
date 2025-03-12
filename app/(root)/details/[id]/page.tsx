@@ -33,12 +33,16 @@ const page = async ({
     searchParams.type
   );
 
-  const crew = await getCrew(searchParams.type, itemId);
-  const cast = await getCast(searchParams.type, itemId);
-  const videos = await getVideos(searchParams.type, itemId);
-  const images = await getImages(searchParams.type, itemId);
-  const userReviews = await getUserReviews(searchParams.type, itemId);
-  const watchProviders = await getWatchProviders(searchParams.type, itemId);
+  const [crew, cast, videos, images, userReviews, watchProviders] =
+    await Promise.all([
+      getCrew(searchParams.type, itemId),
+      getCast(searchParams.type, itemId),
+      getVideos(searchParams.type, itemId),
+      getImages(searchParams.type, itemId),
+      getUserReviews(searchParams.type, itemId),
+      getWatchProviders(searchParams.type, itemId),
+    ]);
+
   const director = crew?.find(
     (member: CrewMemberType) => member.job === "Director"
   );
