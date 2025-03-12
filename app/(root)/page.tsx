@@ -16,18 +16,34 @@ import {
 } from "@/lib/tmdb";
 
 export default async function Home() {
-  const popularMovies = await getPopularMovies("movie", 1);
-  const popularSeries = await getPopularMovies("tv", 1);
-  const nowPlayingMovies = await getNowPlayingMovies();
-  const nowTrendingAll = await getAllTrending();
-  const getMovieGenres = await getGenres("movie");
-  const getSeriesGenres = await getGenres("tv");
-  const featuredMovies = await getDiscoveredMovies(2, "movie");
-  const recommendedSeries = await getDiscoveredMovies(2, "tv");
-  const upcomingMovies = await getUpcomingMovies();
-  const onAirSeries = await getOnTheAirSeries();
-  const streamingProviders = await getStreamingProviders("movie");
-  const user = await getLoggedInUser();
+  const [
+    popularMovies,
+    popularSeries,
+    nowPlayingMovies,
+    nowTrendingAll,
+    getMovieGenres,
+    getSeriesGenres,
+    featuredMovies,
+    recommendedSeries,
+    upcomingMovies,
+    onAirSeries,
+    streamingProviders,
+    user,
+  ] = await Promise.all([
+    getPopularMovies("movie", 1),
+    getPopularMovies("tv", 1),
+    getNowPlayingMovies(),
+    getAllTrending(),
+    getGenres("movie"),
+    getGenres("tv"),
+    getDiscoveredMovies(2, "movie"),
+    getDiscoveredMovies(2, "tv"),
+    getUpcomingMovies(),
+    getOnTheAirSeries(),
+    getStreamingProviders("movie"),
+    getLoggedInUser(),
+  ]);
+
   return (
     <>
       <Hero movies={nowPlayingMovies} genres={getMovieGenres} />
