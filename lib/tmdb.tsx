@@ -7,9 +7,6 @@ async function fetchDataFromTMDB(url: string, cacheTime?: number) {
       accept: "application/json",
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`,
     },
-    next: {
-      revalidate: cacheTime || 60 * 60 * 24,
-    },
   };
 
   const response = await fetch(url, options);
