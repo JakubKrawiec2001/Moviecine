@@ -36,6 +36,7 @@ const Hero = ({ movies, genres }: Props) => {
                   width={1920}
                   height={1080}
                   alt={movie.title}
+                  priority
                   className="h-full object-cover w-full"
                 />
                 <div className="wrapper absolute bottom-[10%] 2lg:bottom-[20%] z-20">
