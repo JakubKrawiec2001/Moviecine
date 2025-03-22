@@ -1,4 +1,5 @@
 import { GenreInterface, MovieInterface } from "@/types";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -30,11 +31,12 @@ const Hero = ({ movies, genres }: Props) => {
                 <p className="hidden md:block absolute top-1/2 right-0 pr-6 py-3 pl-4 border-l-[3px] border-mainPink-1 text-lg glassmorphism_white">
                   Now In Moviecine
                 </p>
-                <img
+                <Image
                   src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                   width={1920}
                   height={1080}
                   alt={movie.title}
+                  priority
                   className="h-full object-cover w-full"
                 />
                 <div className="wrapper absolute bottom-[10%] 2lg:bottom-[20%] z-20">
@@ -43,7 +45,7 @@ const Hero = ({ movies, genres }: Props) => {
                   </h1>
                   <div className="flex items-center gap-2 md:gap-4 mt-2 md:mt-6">
                     <div className="flex items-center gap-2">
-                      <img
+                      <Image
                         src={imdbIcon}
                         height={50}
                         width={50}
