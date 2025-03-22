@@ -63,7 +63,6 @@ const Navbar = ({ user }: { user: User }) => {
               <Link
                 href={path}
                 key={i}
-                prefetch={false}
                 className={cn(
                   "text-slate-300 text-lg hover:text-mainPink-1 transition-colors",
                   {
