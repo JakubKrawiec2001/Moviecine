@@ -1,10 +1,11 @@
 "use client";
 
 import { useWatchlist } from "@/context/watchlistContext";
-import { User, WatchlistType } from "@/types";
+import { User } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import spinner from "../public/icons/spinner.svg";
 
 const Watchlist = ({ user }: { user: User }) => {
   const { watchlistData, setWatchlistData } = useWatchlist();
@@ -37,6 +38,20 @@ const Watchlist = ({ user }: { user: User }) => {
       fetchWatchlist(user.$id);
     }
   }, [user, setWatchlistData]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Image
+          src={spinner}
+          width={40}
+          height={40}
+          alt="Loading..."
+          className="size-[50px] md:size-[80px] animate-spin "
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 2xl:grid-cols-6 gap-4 md:gap-8 2lg:gap-12 mt-12 md:mt-20 relative min-h-[50vh]">
